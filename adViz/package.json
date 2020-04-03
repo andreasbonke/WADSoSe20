@@ -1,0 +1,11 @@
+{
+  "name": "adviz",
+  "version": "1.0.0",
+  "description": "beleg für webentwicklung",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andreas Bonke",
+  "license": "ISC"
+}
