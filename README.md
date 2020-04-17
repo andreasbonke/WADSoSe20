@@ -1,2 +1,2 @@
 # WADSoSe20
-Beleg für Webentwicklung
+Übung Beleg für Webentwicklung
