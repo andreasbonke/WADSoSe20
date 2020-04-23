@@ -1,36 +1,76 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdViz</title>
     <link rel="stylesheet" href="src/css/style.css">
 </head>
+
 <body>
     <main>
-        <header><b>AdViz</b></header>
+        <header>
+            <h1>AdViz</h1>
+        </header>
         <nav>
-            <button type="button" class="nav-button">Show</button>
-            <button type="button" class="nav-button">Add</button>
-            <button type="button" class="nav-button">LogIn</button>
+            <button onclick="document.getElementById('contactList').style.display='block'" type="button"
+                class="nav-button">Show</button>
+            <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
+                class="nav-button">Add</button>
+            <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
+                class="nav-button">LogIn</button>
         </nav>
         <map id="map"></map>
         <footer>copyright</footer>
     </main>
 
-    <div id="contactList">
+    <div class="form-modal" id="contactList">
+        <div class="modal-content">
+            <div class="container" id="list-container">
+                <div class="modal-header">
+                    <span onclick="document.getElementById('contactList').style.display='none'"
+                        class="close">&times;</span>
+                    <h2>Kontakt Liste</h2>
+                </div>
+                <ol>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Eva</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                  <!--   <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
+                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li> -->
+                </ol>
+            </div>
+        </div>
+
 
     </div>
 
     <div class="form-modal" id="modalLogIn">
         <form class="modal-content" id="loginForm">
             <div class="container">
+                <div class="modal-header">
+                    <span onclick="document.getElementById('modalLogIn').style.display='none'"
+                        class="close">&times;</span>
+                    <h2>Anmelden</h2>
+                </div>
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Username eingeben" name="uname" id="" required>
                 <label for="psw"><b>Passwort</b></label>
                 <input type="password" placeholder="Passwort eingeben" name="psw" id="" required>
                 <button type="submit" class="form-button">Anmelden</button>
-                <button type="button" class="form-button">Abbrechen</button>
+                <button onclick="document.getElementById('modalLogIn').style.display='none'" type="button"
+                    class="form-button">Abbrechen</button>
             </div>
         </form>
     </div>
@@ -38,10 +78,15 @@
     <div class="form-modal" id="modalNewAddress">
         <form class="modal-content" id="newAddressForm">
             <div class="container">
+                <div class="modal-header">
+                    <span onclick="document.getElementById('modalNewAddress').style.display='none'"
+                        class="close">&times;</span>
+                    <h2>Neue Adresse Hinzufügen</h2>
+                </div>
                 <label for="forname"><b>Vorname</b></label>
                 <input type="text" placeholder="Vorname eingeben" name="forname" id="">
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" id="">
+                <input type="text" placeholder="Name eingeben" name="name" id="" required>
                 <label for="street"><b>Straße</b></label>
                 <input type="text" placeholder="Straße eingeben" name="street" id="">
                 <label for="postId"><b>PLZ</b></label>
@@ -57,13 +102,18 @@
         </form>
     </div>
 
-    <div class="form-modal" id="modalUpdateAdress">
+    <div class="form-modal" id="modalUpdateAddress">
         <form class="modal-content" id="updateAddressForm">
             <div class="container">
+                <div class="modal-header">
+                    <span onclick="document.getElementById('modalUpdateAddress').style.display='none'"
+                        class="close">&times;</span>
+                    <h2>Address bearbeiten</h2>
+                </div>
                 <label for="forname"><b>Vorname</b></label>
                 <input type="text" placeholder="Vorname eingeben" name="forname" id="">
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" id="">
+                <input type="text" placeholder="Name eingeben" name="name" id="" required>
                 <label for="street"><b>Straße</b></label>
                 <input type="text" placeholder="Straße eingeben" name="street" id="">
                 <label for="postId"><b>PLZ</b></label>
@@ -74,21 +124,24 @@
                 <input type="text" placeholder="Land eingeben" name="country" id="">
                 <label for="private"><b>Privat</b></label>
                 <input type="checkbox" name="private" id="">
-                <button type="button" class="form-button">Hinzufügen</button>
+                <button type="button" class="form-button">Ändern</button>
                 <button type="button" class="form-button">Löschen</button>
             </div>
         </form>
     </div>
+
     <script>
         var map;
         function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 52.518214, lng: 13.397240},
-            zoom: 11
-          });
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 52.518214, lng: 13.397240 },
+                zoom: 11
+            });
         }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmHIBqGm1QeQC2GQoGz1FkIQ2dLIGJYV0&callback=initMap"
-      async defer></script>
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmHIBqGm1QeQC2GQoGz1FkIQ2dLIGJYV0&callback=initMap"
+        async defer></script>
 </body>
+
 </html>

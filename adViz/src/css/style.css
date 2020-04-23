@@ -1,4 +1,5 @@
 body{
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
 }
 
@@ -23,6 +24,14 @@ body{
         grid-area: nav;
         background: lightslategrey
     }
+
+    .nav-button{
+        width: 15em;
+        padding: 14px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+    
+    }
 }
 
 /* Desktop Screen*/
@@ -41,11 +50,34 @@ body{
         grid-area: header;
         background: lightslategrey;
     }
+
     nav{
         height: 10vh;
         grid-area: nav;
         background: lightslategrey;
     }
+
+    .nav-button{
+        width: 25em;
+        padding: 14px 20px;
+        margin: 8px 0;
+        cursor: pointer;
+    
+    }
+}
+
+header{
+    color: white;
+}
+
+.nav-button{
+    color: dimgray;
+}
+
+.nav-button:hover{
+    opacity: 0.5;
+    color: black;
+    
 }
 
 map{
@@ -54,7 +86,7 @@ map{
 }
 
 .modal-content{
-    background: lightgray;
+    background: whitesmoke;
     margin: 5% auto 15% auto;
     width: 80%;
 }
@@ -63,29 +95,35 @@ map{
     padding: 16px;
 }
 
-.form-modal#modalLogIn{
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+#list-container{
+    height: 70vh;
 }
 
-.form-modal#modalUpdateAdress{
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+ol{
+    list-style-type: none;
+    padding: 0;
+    height: 64vh;
+    overflow: auto;
 }
 
-.form-modal#modalNewAddress{
+li{
+    height: 4em;
+    margin: 0;
+    text-align: center;
+}
+
+li:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.form-modal#contactList{
+    margin: 15vh auto 15% auto;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.form-modal{
     display: none;
     position: fixed;
     z-index: 1;
@@ -105,22 +143,32 @@ input[type=text],input[type=password]{
 }
 
 .form-button{
+    color: dimgray;
     width: 100%;
     padding: 14px 20px;
     margin: 8px 0;
-    cursor: pointer;
-
 }
 
-.nav-button{
-    width: 10em;
-    padding: 14px 20px;
-    margin: 8px 0;
+.form-button:hover{
     cursor: pointer;
-
+    color: black;
+    opacity: 0.5;
 }
+
+.close{
+    float: right;   
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    cursor: pointer;
+    color: tomato;
+}
+
 
 footer{
+    color: white;
     height: 5vh;
     grid-area: footer;
     background: lightslategrey;
