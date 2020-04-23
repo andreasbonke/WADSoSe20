@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <main>
         <header>
             <h1>AdViz</h1>
@@ -21,7 +22,7 @@
                     class="nav-button">LogIn</button>
             </nav>
         </header>
-        
+
         <map id="map"></map>
         <footer>copyright</footer>
     </main>
@@ -36,9 +37,19 @@
                 </div>
                 <div class="container" id="list-container">
                     <ol>
-                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'">
+                            <div class="chip">
+                                <img src="img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Jess</b>
+                                <b>Bessmann</b>
+                            </div>
                         </li>
-                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Eva</b>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'">
+                            <div class="chip">
+                            <img src="img_avatar.jpg" alt="Person" width="96" height="96">
+                            <b>Eva</b>
+                            <b>Bessmann</b>
+                        </div>
                         </li>
                         <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Adam</b>
                         </li>
@@ -151,6 +162,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmHIBqGm1QeQC2GQoGz1FkIQ2dLIGJYV0&callback=initMap"
         async defer></script>
+
 </body>
 
 </html>
