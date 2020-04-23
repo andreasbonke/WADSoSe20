@@ -5,84 +5,98 @@ body{
 
 /* Mobile Screen*/
 @media screen and (max-width: 40em){
-    main{
-        width: 100%;
-        display: grid;
-        grid-template-areas: 
-        "header header"
-        "nav nav"
-        "map map"
-        "footer footer"
-    }
     header{
-        height: 5vh;
-        grid-area: header;
-        background: lightslategrey;
+        height: 23vh;
     }
-    nav{
-        height: 5vh;
-        grid-area: nav;
-        background: lightslategrey
+    
+    .nav-button{
+        width: 100%;
     }
 
-    .nav-button{
-        width: 15em;
-        padding: 14px 20px;
-        margin: 8px 0;
-        cursor: pointer;
-    
+    map{
+        height: 75vh;
+    }
+
+    footer{
+        height: 2vh;
+    }
+
+    .modal#contactList{
+        margin: 25vh auto 15% auto;
     }
 }
 
 /* Desktop Screen*/
 @media screen and (min-width: 40em){
-    main{
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-        grid-template-areas:
-        "header nav"
-        "map map"
-        "footer footer"
-    }
     header{
         height: 10vh;
-        grid-area: header;
-        background: lightslategrey;
-    }
-
-    nav{
-        height: 10vh;
-        grid-area: nav;
-        background: lightslategrey;
+        float: right;
     }
 
     .nav-button{
-        width: 25em;
-        padding: 14px 20px;
-        margin: 8px 0;
-        cursor: pointer;
-    
+        width: 10em;
     }
+
+    nav{
+        float: right;
+    }
+
+    map{
+        height: 85vh;
+    }
+    footer{
+        height: 5vh;
+    }
+
+    .modal#contactList{
+        margin: 15vh auto 15% auto;
+    }
+}
+
+main{
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "map map"
+        "footer footer"
 }
 
 header{
     color: white;
+    grid-area: header;
+    background: lightslategrey;
+}
+
+h1{
+    margin: 0;
+    text-align: center;
+}
+
+nav{
+    background: lightslategrey;
 }
 
 .nav-button{
     color: dimgray;
+    cursor: pointer;
+    padding: 14px 20px;
+    margin: 8px 0;
+        
 }
 
 .nav-button:hover{
     opacity: 0.5;
-    color: black;
-    
+    color: black;   
 }
 
 map{
-    height: 85vh;
     grid-area: map;
+}
+
+.modal#contactList{
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .modal-content{
@@ -96,14 +110,14 @@ map{
 }
 
 #list-container{
-    height: 70vh;
+    height: 60vh;
 }
 
 ol{
+    height: inherit;
     list-style-type: none;
     padding: 0;
-    height: 64vh;
-    overflow: auto;
+    overflow: scroll;
 }
 
 li{
@@ -117,13 +131,7 @@ li:hover{
     background-color: lightgray;
 }
 
-.form-modal#contactList{
-    margin: 15vh auto 15% auto;
-    width: 50%;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.form-modal{
+.modal{
     display: none;
     position: fixed;
     z-index: 1;
@@ -166,10 +174,8 @@ input[type=text],input[type=password]{
     color: tomato;
 }
 
-
 footer{
     color: white;
-    height: 5vh;
     grid-area: footer;
     background: lightslategrey;
 }

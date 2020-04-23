@@ -12,58 +12,65 @@
     <main>
         <header>
             <h1>AdViz</h1>
+            <nav>
+                <button onclick="document.getElementById('contactList').style.display='block'" type="button"
+                    class="nav-button">Show</button>
+                <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
+                    class="nav-button">Add</button>
+                <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
+                    class="nav-button">LogIn</button>
+            </nav>
         </header>
-        <nav>
-            <button onclick="document.getElementById('contactList').style.display='block'" type="button"
-                class="nav-button">Show</button>
-            <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
-                class="nav-button">Add</button>
-            <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
-                class="nav-button">LogIn</button>
-        </nav>
+        
         <map id="map"></map>
         <footer>copyright</footer>
     </main>
 
-    <div class="form-modal" id="contactList">
+    <div class="modal" id="contactList">
         <div class="modal-content">
-            <div class="container" id="list-container">
+            <div>
                 <div class="modal-header">
                     <span onclick="document.getElementById('contactList').style.display='none'"
                         class="close">&times;</span>
                     <h2>Kontakt Liste</h2>
                 </div>
-                <ol>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Eva</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                  <!--   <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b></li> -->
-                </ol>
+                <div class="container" id="list-container">
+                    <ol>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jill</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Eva</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Adam</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Peter</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jonas</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Carlos</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Peter</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Martin</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Jacob</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Theodor</b>
+                        </li>
+                        <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>Steve</b>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
-
-
     </div>
 
-    <div class="form-modal" id="modalLogIn">
+    <div class="modal" id="modalLogIn">
         <form class="modal-content" id="loginForm">
+            <div class="modal-header">
+                <span onclick="document.getElementById('modalLogIn').style.display='none'" class="close">&times;</span>
+                <h2>Anmelden</h2>
+            </div>
             <div class="container">
-                <div class="modal-header">
-                    <span onclick="document.getElementById('modalLogIn').style.display='none'"
-                        class="close">&times;</span>
-                    <h2>Anmelden</h2>
-                </div>
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Username eingeben" name="uname" id="" required>
                 <label for="psw"><b>Passwort</b></label>
@@ -75,14 +82,15 @@
         </form>
     </div>
 
-    <div class="form-modal" id="modalNewAddress">
+    <div class="modal" id="modalNewAddress">
         <form class="modal-content" id="newAddressForm">
+            <div class="modal-header">
+                <span onclick="document.getElementById('modalNewAddress').style.display='none'"
+                    class="close">&times;</span>
+                <h2>Neue Adresse Hinzufügen</h2>
+            </div>
             <div class="container">
-                <div class="modal-header">
-                    <span onclick="document.getElementById('modalNewAddress').style.display='none'"
-                        class="close">&times;</span>
-                    <h2>Neue Adresse Hinzufügen</h2>
-                </div>
+
                 <label for="forname"><b>Vorname</b></label>
                 <input type="text" placeholder="Vorname eingeben" name="forname" id="">
                 <label for="name"><b>Name</b></label>
@@ -102,14 +110,15 @@
         </form>
     </div>
 
-    <div class="form-modal" id="modalUpdateAddress">
+    <div class="modal" id="modalUpdateAddress">
         <form class="modal-content" id="updateAddressForm">
+            <div class="modal-header">
+                <span onclick="document.getElementById('modalUpdateAddress').style.display='none'"
+                    class="close">&times;</span>
+                <h2>Address bearbeiten</h2>
+            </div>
             <div class="container">
-                <div class="modal-header">
-                    <span onclick="document.getElementById('modalUpdateAddress').style.display='none'"
-                        class="close">&times;</span>
-                    <h2>Address bearbeiten</h2>
-                </div>
+
                 <label for="forname"><b>Vorname</b></label>
                 <input type="text" placeholder="Vorname eingeben" name="forname" id="">
                 <label for="name"><b>Name</b></label>
