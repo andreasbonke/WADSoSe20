@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdViz</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script type="text/javascript" src="js/drawOpenStreetMap.js"></script>
@@ -14,47 +14,45 @@
 </head>
 
 <body onload="drawmap();">
-<main>
-    <header>
-        <!-- Header -->
+    <main>
+        <header>
+            <!-- Header -->
 
 
-        <!-- Navigation -->
-        <nav>
-            <button onclick="document.getElementById('contactList').style.display='block'" type="button"
+            <!-- Navigation -->
+            <nav>
+                <button onclick="document.getElementById('contactList').style.display='block'" type="button"
                     class="nav-button">Show
-            </button>
-            <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
+                </button>
+                <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
                     class="nav-button">Add
-            </button>
-            <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
+                </button>
+                <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
                     class="nav-button">Log Out
-            </button>
-        </nav>
-        <h1>AdViz</h1>
-    </header>
+                </button>
+            </nav>
+            <h1>AdViz</h1>
+        </header>
 
-    <!-- OpenStreetMap Karte -->
-    <map id="map"></map>
+        <!-- OpenStreetMap Karte -->
+        <map id="map"></map>
 
-    <!-- Footer -->
-    <footer>
-        <!-- Copyright für Open Street Map -->
-        <div id="osm">© <a href="http://www.openstreetmap.org">OpenStreetMap</a>
-            und <a href="http://www.openstreetmap.org/copyright">Mitwirkende</a>,
-            <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <!-- Copyright für Open Street Map -->
+            <div id="osm">© <a href="http://www.openstreetmap.org">OpenStreetMap</a>
+                und <a href="http://www.openstreetmap.org/copyright">Mitwirkende</a>,
+                <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
+            </div>
+        </footer>
 
-</main>
+    </main>
 
-<!-- Kontakt Liste als Modal -->
-<div class="modal"  id="contactList">
-    <div>
+    <!-- Kontakt Liste als Modal -->
+    <div class="modal" id="contactList">
         <div id="contact-content">
             <div class="modal-header">
-                    <span onclick="document.getElementById('contactList').style.display='none'"
-                          class="close">&times;</span>
+                <span onclick="document.getElementById('contactList').style.display='none'" class="close">&times;</span>
                 <h2>Kontakt Liste</h2>
             </div>
             <div class="container" id="list-container">
@@ -74,157 +72,158 @@
                         </div>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Martin</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Martin</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Thomas</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Thomas</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Adam</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Adam</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Jessica</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Jessica</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Peter</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Peter</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Jonas</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Jonas</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Leo</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Leo</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Rober</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Rober</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                     <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Steve</b>
-                            <b>Bessmann</b>
-                        </div>
-                    </b>
+                            <div class="chip">
+                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
+                                <b>Steve</b>
+                                <b>Bessmann</b>
+                            </div>
+                        </b>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Login Formular als Modal -->
-<div class="modal" id="modalLogIn">
-    <form action="#" method="POST" class="modal-content" id="loginForm">
-        <div class="modal-header">
-            <span onclick="document.getElementById('modalLogIn').style.display='none'" class="close" id="logInClose">&times;</span>
-            <h2>Anmelden</h2>
-        </div>
-        <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Username eingeben" name="uname" id="" required>
-            <label for="psw"><b>Passwort</b></label>
-            <input type="password" placeholder="Passwort eingeben" name="psw" id="" required>
-            <button onclick="document.getElementById('modalLogin').style.display='none'" type="submit"  class="form-button">Anmelden</button>
-            </button>
-        </div>
-    </form>
-</div>
+    <!-- Login Formular als Modal -->
+    <div class="modal" id="modalLogIn">
+        <form action="#" method="POST" class="modal-content" id="loginForm">
+            <div class="modal-header">
+                <span onclick="document.getElementById('modalLogIn').style.display='none'" class="close"
+                    id="logInClose">&times;</span>
+                <h2>Anmelden</h2>
+            </div>
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Username eingeben" name="uname" id="" required>
+                <label for="psw"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort eingeben" name="psw" id="" required>
+                <button onclick="document.getElementById('modalLogin').style.display='none'" type="submit"
+                    class="form-button">Anmelden</button>
+                </button>
+            </div>
+        </form>
+    </div>
 
-<!-- Kontakt (hinzufügen) Formular als Modal -->
-<div class="modal" id="modalNewAddress">
-    <form action="#" method="GET" class="modal-content" id="newAddressForm">
-        <div class="modal-header">
+    <!-- Kontakt (hinzufügen) Formular als Modal -->
+    <div class="modal" id="modalNewAddress">
+        <form action="#" method="GET" class="modal-content" id="newAddressForm">
+            <div class="modal-header">
                 <span onclick="document.getElementById('modalNewAddress').style.display='none'"
-                      class="close">&times;</span>
-            <h2>Neue Adresse Hinzufügen</h2>
-        </div>
-        <div class="container">
-            <label for="forname"><b>Vorname</b></label>
-            <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
-            <label for="street"><b>Straße</b></label>
-            <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="postId"><b>PLZ</b></label>
-            <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
-            <label for="town"><b>Stadt</b></label>
-            <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="country"><b>Land</b></label>
-            <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="newAddressCheck"><b>Privat</b></label>
-            <input type="checkbox" name="private" id="newAddressCheck" disabled>
-            <button type="submit" class="form-button">Hinzufügen</button>
-        </div>
-    </form>
-</div>
+                    class="close">&times;</span>
+                <h2>Neue Adresse Hinzufügen</h2>
+            </div>
+            <div class="container">
+                <label for="forname"><b>Vorname</b></label>
+                <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="name"><b>Name</b></label>
+                <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
+                <label for="street"><b>Straße</b></label>
+                <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="postId"><b>PLZ</b></label>
+                <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
+                <label for="town"><b>Stadt</b></label>
+                <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="country"><b>Land</b></label>
+                <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="newAddressCheck"><b>Privat</b></label>
+                <input type="checkbox" name="private" id="newAddressCheck" disabled>
+                <button type="submit" class="form-button">Hinzufügen</button>
+            </div>
+        </form>
+    </div>
 
-<!-- Kontakt (ändern/löschen) Formular als Modal -->
-<div class="modal" id="modalUpdateAddress">
-    <form action="#main" method="GET" class="modal-content" id="updateAddressForm">
-        <div class="modal-header">
+    <!-- Kontakt (ändern/löschen) Formular als Modal -->
+    <div class="modal" id="modalUpdateAddress">
+        <form action="#main" method="GET" class="modal-content" id="updateAddressForm">
+            <div class="modal-header">
                 <span onclick="document.getElementById('modalUpdateAddress').style.display='none'"
-                      class="close">&times;</span>
-            <h2>Address bearbeiten</h2>
-        </div>
-        <div class="container">
-            <label for="forname"><b>Vorname</b></label>
-            <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
-            <label for="street"><b>Straße</b></label>
-            <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="postId"><b>PLZ</b></label>
-            <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
-            <label for="town"><b>Stadt</b></label>
-            <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="country"><b>Land</b></label>
-            <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
-            <label for="updateAddressCheck"><b>Privat</b></label>
-            <input type="checkbox" name="private" id="updateAddressCheck">
-            <button type="button" class="form-button">Ändern</button>
-            <button type="button" class="form-button">Löschen</button>
-        </div>
-    </form>
-</div>
+                    class="close">&times;</span>
+                <h2>Address bearbeiten</h2>
+            </div>
+            <div class="container">
+                <label for="forname"><b>Vorname</b></label>
+                <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="name"><b>Name</b></label>
+                <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
+                <label for="street"><b>Straße</b></label>
+                <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="postId"><b>PLZ</b></label>
+                <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
+                <label for="town"><b>Stadt</b></label>
+                <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="country"><b>Land</b></label>
+                <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
+                <label for="updateAddressCheck"><b>Privat</b></label>
+                <input type="checkbox" name="private" id="updateAddressCheck">
+                <button type="button" class="form-button">Ändern</button>
+                <button type="button" class="form-button">Löschen</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 

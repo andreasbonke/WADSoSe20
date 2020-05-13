@@ -11,7 +11,7 @@ body {
         height: 25vh;
     }
 
-    h1{
+    h1 {
         font-size: 100%;
     }
 
@@ -33,22 +33,22 @@ body {
         background-color: rgba(0, 0, 0, 0);
     }
 
-    #contact-content{
+    #contact-content {
         width: 80%;
     }
 
-    .modal-content{
+    .modal-content {
         width: 80%;
     }
 
-    .modal-content#loginForm{
+    .modal-content#loginForm {
         width: 60%;
     }
-    
+
     .modal-header {
         padding: 2%;
     }
-    
+
 }
 
 /* Desktop Screen*/
@@ -81,11 +81,11 @@ body {
         background-color: rgba(0, 0, 0, 0);
     }
 
-    #contact-content{
+    #contact-content {
         width: 50%;
     }
 
-    .modal-content{
+    .modal-content {
         width: 30%;
     }
 }
@@ -94,7 +94,7 @@ body {
 main {
     width: 100%;
     display: grid;
-    grid-template-areas: "header header" "map map" "footer footer"
+    grid-template-areas: "header header""map map""footer footer"
 }
 
 header {
@@ -145,14 +145,14 @@ map {
     padding: 5px;
 }
 
-#contact-content{
+#contact-content {
     background: whitesmoke;
-    margin: 5% auto 15% auto;
+    margin: 1% auto 10% 10%;
     border-radius: 15px;
     padding: 5px;
 }
 
-.modal-header{
+.modal-header {
     height: 1.8em;
     text-align: left;
     margin: 16px;
@@ -216,17 +216,18 @@ li:hover {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#modalLogIn{
+#modalLogIn {
     background-color: #ffffff;
     display: block;
 }
 
-#logInClose{
+#logInClose {
     /*display:none;*/
 }
 
 
-input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
