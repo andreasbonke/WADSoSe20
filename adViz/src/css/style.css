@@ -77,12 +77,11 @@ body {
 
     .modal#contactList {
         margin: 15vh auto 15% auto;
-        width: 60%;
         background-color: rgba(0, 0, 0, 0);
     }
 
     #contact-content {
-        width: 50%;
+        width: 30%;
     }
 
     .modal-content {
@@ -138,6 +137,17 @@ map {
     z-index: 0;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .modal-content {
     background: whitesmoke;
     margin: 5% auto 15% auto;
@@ -150,6 +160,15 @@ map {
     margin: 1% auto 10% 10%;
     border-radius: 15px;
     padding: 5px;
+}
+
+#modalLogIn {
+    background-color: #ffffff;
+    display: block;
+}
+
+#logInClose {
+    /*display:none;*/
 }
 
 .modal-header {
@@ -204,27 +223,6 @@ li:hover {
     border-radius: 25px;
     margin: 6px
 }
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-#modalLogIn {
-    background-color: #ffffff;
-    display: block;
-}
-
-#logInClose {
-    /*display:none;*/
-}
-
 
 input[type=text],
 input[type=password] {
