@@ -7,8 +7,16 @@ body {
 
 /* Mobile Screen*/
 @media screen and (max-width: 40em) {
+    main {
+        grid-template-areas: "nav""map""footer"
+    }
+
     header {
-        height: 25vh;
+        display: none;
+    }
+
+    nav {
+        height: 20vh;
     }
 
     h1 {
@@ -20,21 +28,17 @@ body {
     }
 
     map {
-        height: 73vh;
+        height: 75vh;
     }
 
     footer {
-        height: 2vh;
+        height: 5vh;
     }
 
     .modal#contactList {
-        margin: 25vh auto 15% auto;
-        width: 80%;
+        margin: 25vh auto 15% 5vh;
+        width: 60%;
         background-color: rgba(0, 0, 0, 0);
-    }
-
-    #contact-content {
-        width: 80%;
     }
 
     .modal-content {
@@ -53,18 +57,20 @@ body {
 
 /* Desktop Screen*/
 @media screen and (min-width: 40em) {
+    main {
+        grid-template-areas: "header nav""map map"" footer footer"
+    }
+
     header {
         height: 8vh;
-        float: right;
+    }
+
+    nav {
+        height: 8vh;
     }
 
     .nav-button {
         width: 10em;
-        height: 5vh;
-    }
-
-    nav {
-        float: right;
     }
 
     map {
@@ -76,12 +82,9 @@ body {
     }
 
     .modal#contactList {
-        margin: 15vh auto 15% auto;
-        background-color: rgba(0, 0, 0, 0);
-    }
-
-    #contact-content {
         width: 30%;
+        margin: 15vh auto 15vh 10vh;
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .modal-content {
@@ -89,11 +92,9 @@ body {
     }
 }
 
-
 main {
     width: 100%;
     display: grid;
-    grid-template-areas: "header header""map map""footer footer"
 }
 
 header {
@@ -110,26 +111,33 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    margin: 0;
+}
+
 nav {
-    margin-top: 1vh;
-    margin-right: 1em;
+    grid-area: nav;
     background: lightslategrey;
 }
 
 .nav-button {
-    background-color: #ffffff;
-    color: dimgray;
+    background-color: lightslategray;
+    color: white;
     cursor: pointer;
-    border: none;
+    border: white;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 5px;
     padding: 14px 20px;
     margin: 8px;
+    font-size: medium;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
 
 }
 
 .nav-button:hover {
-    opacity: 0.5;
-    color: black;
+    color: dimgray;
+    background-color: #ffffff;
 }
 
 map {
@@ -146,6 +154,7 @@ map {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
+
 }
 
 .modal-content {
@@ -153,13 +162,14 @@ map {
     margin: 5% auto 15% auto;
     border-radius: 15px;
     padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
 }
 
 #contact-content {
     background: whitesmoke;
-    margin: 1% auto 10% 10%;
     border-radius: 15px;
     padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
 }
 
 #modalLogIn {
@@ -174,7 +184,7 @@ map {
 .modal-header {
     height: 1.8em;
     text-align: left;
-    margin: 16px;
+    margin: 10px 5px 16px 16px;
 }
 
 .container {
@@ -183,6 +193,7 @@ map {
 
 #list-container {
     height: 60vh;
+    padding: 16px 0 16px 16px;
 }
 
 
@@ -192,19 +203,21 @@ ul {
     padding: 0;
     margin: 0;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 li {
     height: 4em;
+    margin: 3px;
     margin-top: 1em;
     background-color: #ffffff;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 li:hover {
+    background-color: rgba(68, 110, 145, 0.5);
     cursor: pointer;
-    border-radius: 20px;
-    background-color: lightgray;
+    border-radius: 15px;
 }
 
 .chip {
@@ -212,8 +225,8 @@ li:hover {
     width: 100%;
     height: 100%;
     line-height: 64px;
-    border-radius: 20px;
-
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
 }
 
 .chip img {
@@ -228,24 +241,33 @@ input[type=text],
 input[type=password] {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 0.5em 0 1.5em 0;
     display: inline-block;
     box-sizing: border-box;
+    border-radius: 5px;
+    border-style: none;
 }
 
 .form-button {
+    background-color: rgba(68, 110, 145, 0.5);
     color: dimgray;
     width: 100%;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 10px;
+    font-size: medium;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px 0px;
 }
 
 .form-button:hover {
+    background-color: rgba(68, 110, 145, 0.9);
     cursor: pointer;
-    color: black;
-    opacity: 0.5;
+    color: white;
+}
+
+#seperator {
+    height: 1em;
 }
 
 .close {
