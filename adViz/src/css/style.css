@@ -108,6 +108,7 @@ h1 {
     margin-top: 2vh;
     font-size: 200%;
     letter-spacing: 0.08em;
+    text-shadow: 1px 1px 2px lightgray;
     text-align: center;
 }
 
