@@ -2,7 +2,7 @@ let map;
 let popup = L.popup();
 
 function drawmap() {
-    
+
     // Position und Zoomstufe der Karte
     const lon = 13.3916;
     const lat = 52.5172;
@@ -15,23 +15,25 @@ function drawmap() {
     let tonerLite = new L.StamenTileLayer("toner-lite");
     let toner = new L.StamenTileLayer("toner");
     let watercolor = new L.StamenTileLayer("watercolor");
-    let baseLayers = { "OSM": osmde, "Greyscale": tonerLite, "Black and White": toner, "Watercolor": watercolor}; L.control.layers(baseLayers).addTo(map);
+    let baseLayers = { "OSM": osmde, "Greyscale": tonerLite, "Black and White": toner, "Watercolor": watercolor }; L.control.layers(baseLayers).addTo(map);
 
     // show the scale bar on the lower left corner
     L.control.scale().addTo(map);
-   
+
+    L.marker([lat, lon]).addTo(map);
+
 }
 
-function showMarker(latitute, longitude){
-   
-    let markerPos = [latitute, longitude];
-    let marker = L.marker(markerPos).addTo(map);    
+function showMarker(latitute, longitude) {
 
-     popup
-     .setLatLng(markerPos)
-     .setContent("<b>HTW-Berlin<br>Wilhelminenhofstra&szlig;e 75 A<br>12459 Berlin</b><p><img src=\"img/contact_htw-berlin.jpg\" width=\"180\" height=\"113\">");
-     
+    let markerPos = [latitute, longitude];
+    let marker = L.marker(markerPos).addTo(map);
+
+    popup
+        .setLatLng(markerPos)
+        .setContent("<b>HTW-Berlin<br>Wilhelminenhofstra&szlig;e 75 A<br>12459 Berlin</b><p><img src=\"img/contact_htw-berlin.jpg\" width=\"180\" height=\"113\">");
+
     marker.bindPopup(popup).openPopup();
 
-    map.setView(markerPos,18);
+    map.setView(markerPos, 18);
 }

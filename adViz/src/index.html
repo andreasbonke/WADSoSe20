@@ -6,16 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdViz</title>
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/script.js" async defer></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
     <script type="text/javascript" src="js/drawOpenStreetMap.js"></script>
-
 </head>
 
 <body onload="drawmap();">
-    <main>
+
+      <!-- Login Formular als Modal -->
+      <section class="modal" id="modalLogIn">
+        <form class="modal-content" id="loginForm">
+            <div class="modal-header">
+                <h2>Anmelden</h2>
+            </div>
+            <div class="container">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Username eingeben" name="username" required>
+                <label for="password"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort eingeben" name="password" required>
+                <button type="submit" class="form-button" id="logInBtn" onclick="login()">Anmelden</button>
+            </div>
+        </form>
+    </section>
+
+    <main id="main">
         <!-- Header-->
         <header>
             <h1>AdViz</h1>
@@ -23,14 +40,11 @@
 
         <!-- Navigation -->
         <nav>
-            <button onclick="document.getElementById('contactList').style.display='block'" type="button"
-                class="nav-button">Show
+            <button type="button" class="nav-button" id="logOutBtn" onclick="showLoginModal()">Abmelden
             </button>
-            <button onclick="document.getElementById('modalNewAddress').style.display='block'" type="button"
-                class="nav-button">Add
+            <button type="button" class="nav-button" id="addNewContactFormBtn" onclick="showNewAddressModal()">Add
             </button>
-            <button onclick="document.getElementById('modalLogIn').style.display='block'" type="button"
-                class="nav-button">Abmelden
+            <button type="button" class="nav-button" id="showContactListBtn" onclick="showContactsModal()">Show
             </button>
         </nav>
 
@@ -49,184 +63,142 @@
     </main>
 
     <!-- Kontakt Liste als Modal -->
-    <div class="modal" id="contactList">
+    <section class="modal" id="contactList">
         <div id="contact-content">
             <div class="modal-header">
-                <span onclick="document.getElementById('contactList').style.display='none'" class="close">&times;</span>
+                <span class="close" onclick="document.getElementById('contactList').hidden='true'">&times;</span>
                 <h2>Kontakt Liste</h2>
             </div>
             <div class="container" id="list-container">
                 <ul>
-                    <li onclick="showMarker(52.45722, 13.52694);">
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person Icon" width="96" height="96">
-                            <b>Jess</b>
-                            <b>Bessmann</b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.45722, 13.52694);">
+                            <img src="img/img_avatar.jpg" alt="Person Icon" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Jess Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.493816, 13.525481);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
                         </div>
                     </li>
-                    <li onclick="showMarker(52.493816, 13.525481);">
-                        <div class="chip">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                            <b>Eva</b>
-                            <b>Bessmann</b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.193433, 13.52480);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
                         </div>
                     </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Martin</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.793312, 13.565424);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
                     </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Thomas</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.495845, 13.125423);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
                     </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Adam</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.495845, 13.125423);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
                     </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Jessica</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.495845, 13.125423);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
                     </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Peter</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
-                    </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Jonas</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
-                    </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Leo</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
-                    </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Rober</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
-                    </li>
-                    <li onclick="document.getElementById('modalUpdateAddress').style.display='block'"><b>
-                            <div class="chip">
-                                <img src="img/img_avatar.jpg" alt="Person" width="96" height="96">
-                                <b>Steve</b>
-                                <b>Bessmann</b>
-                            </div>
-                        </b>
+                    <li>
+                        <div class="chip" onclick="showMarker(52.495845, 13.125423);">
+                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
+                            <span id="contactName"> Eva Bessmann </span>
+                            <img src="img/edit_icon.png" alt="Edit Icon" width="96" height="96" id="editIcon"
+                                onclick="showUpdateModal()"></img>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
-
-    <!-- Login Formular als Modal -->
-    <div class="modal" id="modalLogIn">
-        <form action="#" method="POST" class="modal-content" id="loginForm">
-            <div class="modal-header">
-                <span onclick="document.getElementById('modalLogIn').style.display='none'" class="close"
-                    id="logInClose">&times;</span>
-                <h2>Anmelden</h2>
-            </div>
-            <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Username eingeben" name="uname" id="" required>
-                <label for="psw"><b>Passwort</b></label>
-                <input type="password" placeholder="Passwort eingeben" name="psw" id="" required>
-                <button onclick="document.getElementById('modalLogin').style.display='none'" type="submit"
-                    class="form-button">Anmelden</button>
-                </button>
-            </div>
-        </form>
-    </div>
+    </section>
 
     <!-- Kontakt (hinzufügen) Formular als Modal -->
-    <div class="modal" id="modalNewAddress">
-        <form action="#" method="GET" class="modal-content" id="newAddressForm">
+    <section class="modal" id="modalNewAddress">
+        <form class="modal-content" id="newAddressForm">
             <div class="modal-header">
-                <span onclick="document.getElementById('modalNewAddress').style.display='none'"
-                    class="close">&times;</span>
+                <span class="close" onclick="document.getElementById('modalNewAddress').hidden='true'">&times;</span>
                 <h2>Neue Adresse Hinzufügen</h2>
             </div>
             <div class="container">
                 <label for="forname"><b>Vorname</b></label>
-                <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Vorname eingeben" name="forname" pattern="[A-Z][a-z]{1,}">
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Name eingeben" name="name" required pattern="[A-Z][a-z]{1,}">
                 <label for="street"><b>Straße</b></label>
-                <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Straße eingeben" name="street" pattern="[A-Z][a-z]{1,}">
                 <label for="postId"><b>PLZ</b></label>
-                <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
+                <input type="text" placeholder="PLZ eingeben" name="postId" pattern="[1-9][0-9]{4}">
                 <label for="town"><b>Stadt</b></label>
-                <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Stadt eingeben" name="town" pattern="[A-Z][a-z]{1,}">
                 <label for="country"><b>Land</b></label>
-                <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Land eingeben" name="country" pattern="[A-Z][a-z]{1,}">
                 <label for="newAddressCheck"><b>Privat</b></label>
                 <input type="checkbox" name="private" id="newAddressCheck" disabled>
                 <div id="seperator"></div>
                 <button type="submit" class="form-button">Hinzufügen</button>
             </div>
         </form>
-    </div>
+    </section>
 
     <!-- Kontakt (ändern/löschen) Formular als Modal -->
-    <div class="modal" id="modalUpdateAddress">
-        <form action="#main" method="GET" class="modal-content" id="updateAddressForm">
+    <section class="modal" id="modalUpdateAddress">
+        <form class="modal-content" id="updateAddressForm">
             <div class="modal-header">
-                <span onclick="document.getElementById('modalUpdateAddress').style.display='none'"
-                    class="close">&times;</span>
+                <span class="close" onclick="document.getElementById('modalUpdateAddress').hidden='true'">&times;</span>
                 <h2>Address bearbeiten</h2>
             </div>
             <div class="container">
                 <label for="forname"><b>Vorname</b></label>
-                <input type="text" placeholder="Vorname eingeben" name="forname" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Vorname eingeben" name="forname" pattern="[A-Z][a-z]{1,}">
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" id="" required pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Name eingeben" name="name" required pattern="[A-Z][a-z]{1,}">
                 <label for="street"><b>Straße</b></label>
-                <input type="text" placeholder="Straße eingeben" name="street" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Straße eingeben" name="street" pattern="[A-Z][a-z]{1,}">
                 <label for="postId"><b>PLZ</b></label>
-                <input type="text" placeholder="PLZ eingeben" name="postId" id="" pattern="[1-9][0-9]{4}">
+                <input type="text" placeholder="PLZ eingeben" name="postId" pattern="[1-9][0-9]{4}">
                 <label for="town"><b>Stadt</b></label>
-                <input type="text" placeholder="Stadt eingeben" name="town" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Stadt eingeben" name="town" pattern="[A-Z][a-z]{1,}">
                 <label for="country"><b>Land</b></label>
-                <input type="text" placeholder="Land eingeben" name="country" id="" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Land eingeben" name="country" pattern="[A-Z][a-z]{1,}">
                 <label for="updateAddressCheck"><b>Privat</b></label>
                 <input type="checkbox" name="private" id="updateAddressCheck">
                 <div id="seperator"></div>
-                <button type="button" class="form-button">Ändern</button>
-                <button type="button" class="form-button">Löschen</button>
+                <button type="submit" class="form-button">Ändern</button>
+                <button type="submit" class="form-button">Löschen</button>
             </div>
         </form>
-    </div>
+    </section>
 
+  
 </body>
 
 </html>
