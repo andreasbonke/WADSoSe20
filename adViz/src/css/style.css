@@ -230,7 +230,7 @@ li {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
 }
 
-.chip:hover{
+.chip:hover {
     cursor: pointer;
     background-color: rgba(68, 110, 145, 0.5);
     color: #ffffff;
@@ -245,13 +245,13 @@ li {
     margin: 5px;
 }
 
-#contactName{
+#contactName {
     height: 100%;
     margin: 10px;
     font-size: medium;
 }
 
-#editIcon{
+#editIcon {
     height: 50px;
     width: 50px;
     float: right;
@@ -259,6 +259,7 @@ li {
     margin: 5px;
     z-index: 2;
 }
+
 #editIcon:hover {
     background-color: #ffffff;
     cursor: pointer;
@@ -275,7 +276,7 @@ input[type=password] {
     border-style: none;
 }
 
-#updateAddressCheck:hover{
+#updateAddressCheck:hover {
     cursor: pointer;
 }
 
