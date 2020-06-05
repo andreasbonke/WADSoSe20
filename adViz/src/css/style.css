@@ -251,18 +251,17 @@ li {
     font-size: medium;
 }
 
-#editIcon {
-    height: 50px;
-    width: 50px;
-    float: right;
-    border-radius: 15px;
-    margin: 5px;
-    z-index: 2;
+#labelPrivateCheckBox {
+    margin-right: 100%;
 }
 
-#editIcon:hover {
-    background-color: #ffffff;
-    cursor: pointer;
+input[type=checkbox] {
+    width: 27px;
+    height: 27px;
+    margin: 0.5em 0 1.5em 0;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
 }
 
 input[type=text],
@@ -274,11 +273,69 @@ input[type=password] {
     box-sizing: border-box;
     border-radius: 5px;
     border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+}
+
+/* .leaflet-popup-content {
+    min-width: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.leaflet-popup-content .popupLabel {
+    margin: 1.5em auto 0.5em auto;
+    font-size: large;
+    font-weight: bold;
+}
+
+.leaflet-popup-content .popupValue {
+    margin: 0 0 0.2em 0.5em ;
+    font-size: medium;
+}
+
+.leaflet-popup-content .avatarContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.leaflet-popup-content img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+}
+
+.leaflet-popup-content #editButtonPopup {
+    height: 35px;
+    width: 35px;
+    margin: 1.5em 0 0;
+    background-color: rgba(241, 177, 58, 0.849);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+}
+
+.leaflet-popup-content #editButtonPopup:hover {
+    cursor: pointer;
+    background-color: rgba(230, 159, 26, 0.863);
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px 0px;
+}
+
+.leaflet-popup-close-button {
+    padding: 10px 5px 0 0 !important;
+    width: 28px !important;
+    height: 20px !important;
+    font: 28px/20px Arial, Helvetica, sans-serif !important;
+    color: black !important;
+}
+
+.leaflet-popup-close-button:hover {
+    color: tomato !important;
 }
 
 #updateAddressCheck:hover {
     cursor: pointer;
-}
+} */
 
 .form-button {
     background-color: rgba(68, 110, 145, 0.5);

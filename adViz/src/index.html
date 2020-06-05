@@ -10,11 +10,15 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
-    <script type="text/javascript" src="js/drawOpenStreetMap.js"></script>
+    <script type="text/javascript" src="js/drawOpenStreetMap.js" async defer></script>
+    <script type="text/javascript" src="js/UserManagement.js" async defer></script>
     <script type="text/javascript" src="js/script.js" async defer></script>
+    <script type="text/javascript" src="js/AddressManager.js" async defer></script>
+    <script type="text/javascript" src="js/AddressDB.js" async defer></script>
+
 </head>
 
-<body onload="drawmap();">
+<body>
 
     <!-- Login Formular als Modal -->
     <section class="modal" id="modalLogIn">
@@ -35,16 +39,16 @@
     <main id="main">
         <!-- Header-->
         <header>
-            <h1>AdViz</h1>
+            <h1 id="my_header">AdViz</h1>
         </header>
 
         <!-- Navigation -->
         <nav>
             <button type="button" class="nav-button" id="logOutBtn">Abmelden
             </button>
-            <button type="button" class="nav-button" id="addNewContactFormBtn">Add
+            <button type="button" class="nav-button" id="addNewContactFormBtn">neuer Kontakt
             </button>
-            <button type="button" class="nav-button" id="showContactListBtn">Show
+            <button type="button" class="nav-button" id="showContactListBtn">Kontakt Liste
             </button>
         </nav>
 
@@ -66,87 +70,48 @@
     <section class="modal" id="contactList">
         <div id="contact-content">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span class="close" id="closeContactList">&times;</span>
                 <h2>Kontakt Liste</h2>
             </div>
             <div class="container" id="list-container">
-                <ul>
-                    <li>
-                        <div class="chip" onclick="showMarker(52.45722, 13.52694);">
-                            <img src="img/img_avatar.jpg" alt="Person Icon" width="96" height="96" id="contactIcon">
-                            <span id="contactName"> Jess Bessmann </span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="chip" onclick="showMarker(52.493816, 13.525481);">
-                            <img src="img/img_avatar.jpg" alt="Person" width="96" height="96" id="contactIcon">
-                            <span id="contactName"> Eva Bessmann </span>
-                        </div>
-                    </li>
+                <ul id="contactListEntries">
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Kontakt (hinzufügen) Formular als Modal -->
-    <section class="modal" id="modalNewAddress">
-        <form class="modal-content" id="newAddressForm">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Neue Adresse Hinzufügen</h2>
-            </div>
-            <div class="container">
-                <label for="forname"><b>Vorname</b></label>
-                <input type="text" placeholder="Vorname eingeben" name="forname" pattern="[A-Z][a-z]{1,}">
-                <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" required pattern="[A-Z][a-z]{1,}">
-                <label for="street"><b>Straße</b></label>
-                <input type="text" placeholder="Straße eingeben" name="street" pattern="[A-Z][a-z]{1,}">
-                <label for="postId"><b>PLZ</b></label>
-                <input type="text" placeholder="PLZ eingeben" name="postId" pattern="[1-9][0-9]{4}">
-                <label for="town"><b>Stadt</b></label>
-                <input type="text" placeholder="Stadt eingeben" name="town" pattern="[A-Z][a-z]{1,}">
-                <label for="country"><b>Land</b></label>
-                <input type="text" placeholder="Land eingeben" name="country" pattern="[A-Z][a-z]{1,}">
-                <label for="newAddressCheck"><b>Privat</b></label>
-                <input type="checkbox" name="private" id="newAddressCheck" disabled>
-                <div id="seperator"></div>
-                <button type="submit" class="form-button">Hinzufügen</button>
-            </div>
-        </form>
-    </section>
-
     <!-- Kontakt (ändern/löschen) Formular als Modal -->
-    <section class="modal" id="modalUpdateAddress">
-        <form class="modal-content" id="updateAddressForm">
+    <section class="modal" id="modalAddress">
+        <form class="modal-content" id="AddressForm">
             <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Address bearbeiten</h2>
+                <span class="close" id="closeContactForm">&times;</span>
+                <h2>Addresse</h2>
             </div>
             <div class="container">
                 <label for="forname"><b>Vorname</b></label>
-                <input type="text" placeholder="Vorname eingeben" name="forname" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Vorname eingeben" id="forename" name="forename"
+                    pattern="[A-Z][a-z]{1,}">
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" name="name" required pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Name eingeben" id="name" name="name" required pattern="[A-Z][a-z]{1,}">
                 <label for="street"><b>Straße</b></label>
-                <input type="text" placeholder="Straße eingeben" name="street" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Straße eingeben" id="street" name="street" required> <!-- Pattern sinnvoll? -->
                 <label for="postId"><b>PLZ</b></label>
-                <input type="text" placeholder="PLZ eingeben" name="postId" pattern="[1-9][0-9]{4}">
+                <input type="text" placeholder="PLZ eingeben" id="postId" name="postId" required
+                    pattern="[1-9][0-9]{4}"> 
                 <label for="town"><b>Stadt</b></label>
-                <input type="text" placeholder="Stadt eingeben" name="town" pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Stadt eingeben" id="town" name="town" required> <!-- Pattern sinnvoll? -->
                 <label for="country"><b>Land</b></label>
-                <input type="text" placeholder="Land eingeben" name="country" pattern="[A-Z][a-z]{1,}">
-                <label for="updateAddressCheck"><b>Privat</b></label>
+                <input type="text" placeholder="Land eingeben" id="country" name="country" required
+                    pattern="[A-Z][a-z]{1,}">
+                <label for="updateAddressCheck" id="labelPrivateCheckBox"><b>Privat</b></label>
                 <input type="checkbox" name="private" id="updateAddressCheck">
                 <div id="seperator"></div>
                 <button type="submit" class="form-button">Ändern</button>
                 <button type="submit" class="form-button">Löschen</button>
+                <button type="submit" id="addFormButton" class="form-button">Hinzufügen</button>
             </div>
         </form>
     </section>
-
-
 </body>
 
 </html>
