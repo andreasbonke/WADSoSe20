@@ -4,10 +4,7 @@ let loginForm = document.querySelector('#loginForm');
 let contactList = document.querySelector('#contactList');
 let modalAddress = document.querySelector('#modalAddress');
 let button = document.querySelectorAll('.form-button');
-let containerElements = document.querySelectorAll('.container');
 let textInputs = document.querySelectorAll('input[type="text"]');
-let loginBtn = document.querySelector('#logInBtn');
-let addDataFromFormButton = button[3];
 let showOnly = false;
 
 
@@ -16,10 +13,6 @@ logInModal.hidden = false;
 contactList.hidden = true;
 modalAddress.hidden = true;
 
-// ToDo fragen, ob Kontaktliste direkt beim Login angezeigt werden muessen
-// ToDo fragen, ob SHOW Funktion so Ordnung (Form oeffnet nicht direkt)
-// ToDo fragen, ob pattern in Input Felder Straße und Stadt nötig sind
-// ToDo fragen, ob es nötig ist, bei Eingabe einer falschen Addresse 
 
 /* schließt LogIn Formular, wenn Benutzerdaten korrekt sind */
 loginForm.onsubmit = function (event) {
@@ -50,8 +43,8 @@ loginForm.onsubmit = function (event) {
 modalAddress.onsubmit = function (event) {
     event.preventDefault();
     modalAddress.hidden = true;
-
     if (!showOnly) {
+
         let forename = document.querySelector('#forename').value;
         let name = document.querySelector('#name').value;
         let street = document.querySelector('#street').value;
@@ -59,7 +52,7 @@ modalAddress.onsubmit = function (event) {
         let town = document.querySelector('#town').value;
         let country = document.querySelector('#country').value;
         let address = new Address(forename, name, street, postId, town, country, document.querySelector('#updateAddressCheck').checked);
-        addAddress(address);
+        addAddressToMap(address);
         clearAllFields();
     }
     showOnly = true;
@@ -84,15 +77,8 @@ logOut.addEventListener("click", function () {
     window.location.reload(true);
 });
 
-// funktioniert nicht
-/* loginBtn.addEventListener("submit", (event) => {
-        console.log("you clicked me");
-        event.preventDefault();
-        logInModal.hidden = true;
-})
- */
 
-/* Bei klicken des Show Buttons, öffnet sich die Kontakt Liste */
+/* Bei klicken des Show Buttons ('Kontakt Liste'), öffnet sich die Kontakt Liste */
 let show = document.querySelector('#showContactListBtn');
 show.addEventListener("click", function () {
     contactList.hidden = false;
@@ -100,16 +86,16 @@ show.addEventListener("click", function () {
     showOnly = true;
 })
 
-/* Bei klicken des Add Buttons, öffnet sich das "Addressen Hinzufügen" Formular */
+/* Bei klicken des Add Buttons ('neuer Kontakt'), öffnet sich das "Addressen Hinzufügen" Formular */
 let add = document.querySelector('#addNewContactFormBtn');
 add.addEventListener("click", function () {
+    clearAllFields();
     showOnly = false;
     modalAddress.hidden = false;
     modalAddress.querySelector('h2').textContent = "Addresse hinzufügen"
     button[1].hidden = true;
     button[2].hidden = true;
     button[3].hidden = false;
-
 });
 
 
@@ -125,4 +111,5 @@ let closeBtnForm = document.querySelector('#closeContactForm');
 closeBtnForm.addEventListener("click", function () {
     modalAddress.hidden = true;
     clearAllFields();
+    showOnly = true;
 });

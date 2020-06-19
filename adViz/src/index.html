@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -89,17 +90,18 @@
             </div>
             <div class="container">
                 <label for="forname"><b>Vorname</b></label>
-                <input type="text" placeholder="Vorname eingeben" id="forename" name="forename"
-                    pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Vorname eingeben" id="forename" name="forename" required>
                 <label for="name"><b>Name</b></label>
-                <input type="text" placeholder="Name eingeben" id="name" name="name" required pattern="[A-Z][a-z]{1,}">
+                <input type="text" placeholder="Name eingeben" id="name" name="name" required>
                 <label for="street"><b>Straße</b></label>
-                <input type="text" placeholder="Straße eingeben" id="street" name="street" required> <!-- Pattern sinnvoll? -->
+                <input type="text" placeholder="Straße eingeben" id="street" name="street" required>
+                <!-- Pattern sinnvoll? -->
                 <label for="postId"><b>PLZ</b></label>
                 <input type="text" placeholder="PLZ eingeben" id="postId" name="postId" required
-                    pattern="[1-9][0-9]{4}"> 
+                    pattern="[1-9][0-9]{4}">
                 <label for="town"><b>Stadt</b></label>
-                <input type="text" placeholder="Stadt eingeben" id="town" name="town" required> <!-- Pattern sinnvoll? -->
+                <input type="text" placeholder="Stadt eingeben" id="town" name="town" required>
+                <!-- Pattern sinnvoll? -->
                 <label for="country"><b>Land</b></label>
                 <input type="text" placeholder="Land eingeben" id="country" name="country" required
                     pattern="[A-Z][a-z]{1,}">

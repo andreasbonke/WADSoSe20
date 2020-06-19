@@ -2,15 +2,18 @@
 
 let addressDb = []
 
-let contact1 = new Address("Marvin", "Rausch", "Gaillardstrasse", "13187", "Berlin", "Deutschland", false);
-let contact2 = new Address("Andreas", "Bonke", "Am Krusenick", "12555", "Berlin", "Deutschland", true);
 
 /**
  * Default Contacts
  */
 function addDefaultAddresses() {
-    addAddress(contact1);
-    addAddress(contact2);
+    let contact1 = new Address("Marvin", "Rausch", "Gaillardstrasse", "13187", "Berlin", "Deutschland", false);
+    let contact2 = new Address("Andreas", "Bonke", "Am Krusenick", "12555", "Berlin", "Deutschland", true);
+
+    saveAddressInLocalStorage(contact1);
+    saveAddressInLocalStorage(contact2);
+
+    getAddressFromLocalStorage();
 }
 
 /**
@@ -25,7 +28,6 @@ function addDefaultAddresses() {
  * @constructor
  */
 function Address(forename, name, street, postId, town, country, isPrivate) {
-    // ToDo check forename and name is unique
     this.forename = forename;
     this.name = name;
     this.street = street;
@@ -36,12 +38,36 @@ function Address(forename, name, street, postId, town, country, isPrivate) {
 }
 
 /**
- * method to add new address to DB
+ * checks whether an address is already existing
+ * @param forename forename of contact
+ * @param name name of contact
+ * @returns {boolean} true if there is already a contact in DB with these parameters; else false
+ */
+function contactAlreadyExisting(forename, name) {
+    for (let i = 0; i < addressDb.length; i++) {
+        if (addressDb[i].forename === forename && addressDb[i].name === name) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * method to initiate the process of getting coordinates of an address and adding the address to Map and DB
  * @param address address object
  */
-function addAddress(address) {
-    if (get_coordinates(address.street + " " + address.postId + " " + address.town).length == 0) {
-        alert("Adresse existiert nicht!");
+function addAddressToMap(address) {
+    get_coordinates(address);
+}
+
+/**
+ * this method is called by the get_coordinates function to add the address to DB and Map after the coordinates
+ * attributes were added to the address object
+ * @param address
+ */
+function addAddressToDB(address) {
+    if (contactAlreadyExisting(address.forename, address.name)) {
+        alert("Kontakt existiert bereits!")
         return;
     }
     addressDb.push(address);
@@ -50,6 +76,7 @@ function addAddress(address) {
     if (address.isPrivate && !loggedInAs.adminRights) {
         return;
     }
+    saveAddressInLocalStorage(address);
     addMarker(address);
 }
 
@@ -110,16 +137,45 @@ function editAddress(address) {
         checkBox.checked = false;
     }
     if (!loggedInAs.adminRights) {
-        contactForm.elements['forename'].readOnly = true;
-        contactForm.elements['name'].readOnly = true;
-        contactForm.elements['street'].readOnly = true;
-        contactForm.elements['postId'].readOnly = true;
-        contactForm.elements['town'].readOnly = true;
-        contactForm.elements['country'].readOnly = true;
+        contactForm.elements['forename'].disabled = true;
+        contactForm.elements['name'].disabled = true;
+        contactForm.elements['street'].disabled = true;
+        contactForm.elements['postId'].disabled = true;
+        contactForm.elements['town'].disabled = true;
+        contactForm.elements['country'].disabled = true;
+
         checkBox.hidden = true;
         document.querySelector('#labelPrivateCheckBox').hidden = true;
 
         button[1].hidden = true;
         button[2].hidden = true;
+    }
+}
+
+/**
+ * method to save an address into LocalStorage
+ * @param address address 
+ */
+function saveAddressInLocalStorage(address) {
+
+    localStorage.setItem(address.forename + address.name, JSON.stringify(address));
+}
+
+/**
+ * method that gets all addresses from the local storage and then writes them to the addressDB and Map 
+ */
+function getAddressFromLocalStorage() {
+
+    for (let index = 0; index < localStorage.length; index++) {
+        let tempKey = localStorage.key(index);
+        let addressRaw = localStorage.getItem(tempKey)
+        let address = JSON.parse(addressRaw);
+
+        if (!contactAlreadyExisting(address.forename, address.name)) {
+            addAddressToMap(address);
+        } else {
+            console.log("Addresse sind schon vorhanden");  // Debug warning entry
+        }
+
     }
 }

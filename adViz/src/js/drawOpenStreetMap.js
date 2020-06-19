@@ -4,7 +4,6 @@
 const lon = 13.3916;
 const lat = 52.5172;
 let map;
-let popup = L.popup();
 
 document.onload = drawMap();
 
@@ -34,7 +33,8 @@ function drawMap() {
  * @param address address object
  */
 function addMarker(address) {
-    let markerPos = get_coordinates(address.street + " " + address.postId + " " + address.town)
+    let markerPos = address.markerPos;
+
     let marker = L.marker(markerPos).addTo(map);
     address.my_marker = marker;
 
