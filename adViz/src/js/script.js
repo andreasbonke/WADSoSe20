@@ -92,7 +92,7 @@ add.addEventListener("click", function () {
     clearAllFields();
     showOnly = false;
     modalAddress.hidden = false;
-    modalAddress.querySelector('h2').textContent = "Addresse hinzufügen"
+    modalAddress.querySelector('h2').textContent = "Adresse hinzufügen"
     button[1].hidden = true;
     button[2].hidden = true;
     button[3].hidden = false;
