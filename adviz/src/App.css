@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0px;
-}
-
 /* Mobile Screen*/
 @media screen and (max-width: 40em) {
     main {
@@ -66,7 +61,7 @@ body {
 /* Desktop Screen*/
 @media screen and (min-width: 40em) {
     main {
-        /* grid-template-areas: "header nav""map map"" footer footer" */
+        grid-template-areas: "header nav""map map"" footer footer"
     }
 
     header {
@@ -106,7 +101,7 @@ body {
 }
 
 main {
-    /* display: grid; */
+    display: grid;
 }
 
 header {
@@ -153,15 +148,15 @@ nav {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px 0px;
 }
 
-map {
-    /* grid-area: map; */
+#map {
+    grid-area: map;
     /* z-index: 0; */
-    width: 100%;
+    
 }
 
 .modal {
-    /* position: fixed; */
-    /* z-index: 1; */
+    /* position: fixed;
+    z-index: 1; */
     left: 0;
     top: 0;
     width: 100%;
@@ -197,6 +192,11 @@ map {
 
 .container {
     padding: 16px;
+}
+
+.leaflet-container {
+    width: 100vw;
+    height: 100vh;
 }
 
 #list-container {

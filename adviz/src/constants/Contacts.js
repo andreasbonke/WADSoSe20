@@ -23,7 +23,7 @@ const Contacts = ({ contacts, deleteContact }) => {
                                     <div>Country: {contact.country}</div>
                                     <div>Private: </div>
                                     <input type="checkbox" id="updateAddressCheck" checked={contact.isPrivate} disabled />
-                                    <button className="form-button" onClick={() => { deleteContact(contact.id) }}>Delete Contact</button>
+                                    <button className="form-button" onClick={() => { deleteContact(contact.id) }}>Löschen</button>
                                 </div>
                             </div>
                         </div>

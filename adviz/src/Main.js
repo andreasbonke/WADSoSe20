@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Contacts from './constants/Contacts';
 import AddContact from './components/AddContact';
 import Footer from './components/Footer'
+import MapView from './components/MapView';
 
 class Main extends Component {
     state = {
@@ -44,7 +45,7 @@ class Main extends Component {
         return (
             <div id="main">
                 <Header />
-                <div id='map'></div>
+                <MapView />
                 <Contacts contacts={this.state.contacts} deleteContact={this.deleteContact} />
                 <AddContact addContact={this.addContact} />
                 <Footer />
