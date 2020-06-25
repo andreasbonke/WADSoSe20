@@ -12,6 +12,7 @@ class Main extends Component {
             { forname: 'Julia', name: 'Koldewitz', street: 'Am Krusenick', postId: '12555', town: 'Berlin', country: 'Deutschland', isPrivate: false, id: 2 },
             { forname: 'Marvin', name: 'Rausch', street: 'Gaillardstrasse', postId: '13187', town: 'Berlin', country: 'Deutschland', isPrivate: true, id: 3 },
         ]
+
     }
 
     addContact = (contact) => {
@@ -32,6 +33,7 @@ class Main extends Component {
         });
     }
 
+    // Methode wird ausgeführt nachdem die Komponenten in das DOM gerendert wurde
     componentDidMount() {
         console.log('component mounted');
     }
@@ -39,6 +41,10 @@ class Main extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('component updated');
         console.log(prevProps, prevState)
+    }
+
+    componentWillUnmount() {
+
     }
 
     render() {

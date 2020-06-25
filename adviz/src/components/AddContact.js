@@ -26,24 +26,24 @@ class AddContact extends Component {
                 <form className="modal-content" id="AddressForm" onSubmit={this.handleSubmit}>
                     <div className="modal-header">
                         <span className="close" id="closeContactForm">&times;</span>
-                        <h2>Adresse Hinzufügen</h2>
+                        <h2>Add New Address</h2>
                     </div>
                     <div className="container">
-                        <label htmlFor="forname">Vorname:</label>
+                        <label htmlFor="forname">Forname:</label>
                         <input type="text" id="forname" onChange={this.handleChange} required />
                         <label htmlFor="name">Name:</label>
                         <input type="text" id="name" onChange={this.handleChange} required />
-                        <label htmlFor="street">Straße:</label>
+                        <label htmlFor="street">Street:</label>
                         <input type="text" id="street" onChange={this.handleChange} required />
-                        <label htmlFor="postId">PLZ:</label>
+                        <label htmlFor="postId">Postcode:</label>
                         <input type="text" id="postId" onChange={this.handleChange} required />
-                        <label htmlFor="town">Stadt:</label>
+                        <label htmlFor="town">Town:</label>
                         <input type="text" id="town" onChange={this.handleChange} required />
-                        <label htmlFor="country">Land:</label>
+                        <label htmlFor="country">Country:</label>
                         <input type="text" id="county" onChange={this.handleChange} required />
-                        <label htmlFor="updateAdressCheck">Privat:</label>
+                        <label htmlFor="updateAdressCheck">Private:</label>
                         <input type="checkbox" id="updateAddressCheck" checked={this.state.isPrivate} onChange={this.handleChange} />
-                        <button className="form-button">Hinzufügen</button>
+                        <button className="form-button">Add</button>
                     </div>
 
                 </form>

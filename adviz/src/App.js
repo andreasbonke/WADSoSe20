@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LoginForm from './components/LoginForm';
 import Main from './Main';
 import {
@@ -14,10 +14,8 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/" exact={true}>
-            <LoginForm />
-            <Main />
-          </Route>
+          <Route path="/" component={LoginForm} exact={true}></Route>
+          <Route path="/main" component={Main} exact={true}></Route>
         </Switch>
       </div>
     </Router>

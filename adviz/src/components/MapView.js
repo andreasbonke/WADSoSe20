@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import data from '../assets/data'
-import Markers from './ContactMarker'
+import Markers from '../constants/ContactMarker'
 
 
 class MapView extends Component {
@@ -19,14 +19,14 @@ class MapView extends Component {
 
 
     render() {
-        const {currentLocation, zoom} = this.state;
+        const { currentLocation, zoom } = this.state;
         return (
             <Map id="map" center={currentLocation} zoom={zoom}>
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Markers contacts={data.contacts}/>
+                <Markers contacts={data.contacts} />
             </Map>
         )
     }
