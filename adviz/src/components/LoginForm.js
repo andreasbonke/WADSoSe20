@@ -17,21 +17,21 @@ function LoginForm(props) {
     const handleSubmitClick = (e) => {
         e.preventDefault();
         //TODO: Anmeldung weiterverarbeiten
-        //TODO: weiterleiten zur Hauptseite
+        props.history.push('/main');
     }
 
     return (
         <div className="modal" id="modalLogIn">
-            <form className="modal-content" id="loginForm">
+            <form className="modal-content" id="loginForm" onSubmit={handleSubmitClick}>
                 <div className="modal-header">
                     <h2>Log In to Adviz</h2>
                 </div>
                 <div className="container">
                     <label htmlFor="username"><b>Username</b></label>
-                    <input type="text" placeholder="Username" value={state.name} onChange={handleChange} required />
+                    <input id="name" type="text" placeholder="Username" value={state.name} onChange={handleChange} required />
                     <label htmlFor="password"><b>Password</b></label>
-                    <input type="password" placeholder="Password" value={state.password} onChange={handleChange} required />
-                    <button type="submit" className="form-button" id="logInBtn" onSubmit={handleSubmitClick} >Log In</button>
+                    <input id="password" type="password" placeholder="Password" value={state.password} onChange={handleChange} required />
+                    <button type="submit" className="form-button" id="logInBtn"  >Log In</button>
                 </div>
             </form>
         </div>

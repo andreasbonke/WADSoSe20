@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Contacts from './constants/Contacts';
+import ContactList from './components/ContactList'
 import AddContact from './components/AddContact';
 import Footer from './components/Footer'
 import MapView from './components/MapView';
+import Contacts from './constants/Contacts'
 
 class Main extends Component {
     state = {
@@ -16,7 +17,7 @@ class Main extends Component {
     }
 
     addContact = (contact) => {
-        contact.id = Math.random();
+        contact.id = Math.random() * 100;
         let contacts = [...this.state.contacts, contact];
         this.setState({
             contacts: contacts
@@ -32,6 +33,7 @@ class Main extends Component {
             contacts: contacts
         });
     }
+
 
     // Methode wird ausgeführt nachdem die Komponenten in das DOM gerendert wurde
     componentDidMount() {
@@ -52,6 +54,7 @@ class Main extends Component {
             <div id="main">
                 <Header />
                 <MapView />
+                <ContactList />
                 <Contacts contacts={this.state.contacts} deleteContact={this.deleteContact} />
                 <AddContact addContact={this.addContact} />
                 <Footer />

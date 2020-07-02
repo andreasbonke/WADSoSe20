@@ -4,7 +4,7 @@ const Contacts = ({ contacts, deleteContact }) => {
     // console.log(this.props);
     // const { contacts } = this.props;
     return (
-        <div className="contact-list">
+        <div>
             {
                 contacts.map(contact => {
                     return contact.isPrivate === false ? (

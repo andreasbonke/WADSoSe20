@@ -43,9 +43,8 @@ class AddContact extends Component {
                         <input type="text" id="county" onChange={this.handleChange} required />
                         <label htmlFor="updateAdressCheck">Private:</label>
                         <input type="checkbox" id="updateAddressCheck" checked={this.state.isPrivate} onChange={this.handleChange} />
-                        <button className="form-button">Add</button>
+                        <button type="submit" className="form-button">Add</button>
                     </div>
-
                 </form>
             </div>
         )
