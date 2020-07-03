@@ -15,10 +15,6 @@ class Main extends Component {
         ]
     }
 
-    idAlreadyExist() {
-
-    }
-
     addContact = (contact) => {
 
         // prüfen ob id existiert

@@ -333,6 +333,14 @@ footer {
   margin-top: 5px;
 }
 
+.hidden-true {
+  display: block;
+}
+
+.hidden-false {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   
   #modalLogIn {
