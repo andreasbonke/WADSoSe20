@@ -1,14 +1,16 @@
 import React from 'react'
 
-const ContactInfoWindow = ({ contact, show, handleClose, deleteContact}) => {
-    const modal = show ? 'modal hidden-true' : 'modal hidden-false'
+const ContactInfoWindow = ({ contacts, deleteContact, handleClose }) => {
 
-        return (
-            <div>
-                <div className={modal} id="modalAddressInfo">
+    console.log(contacts)
+
+    return (
+        <div>
+            {contacts.map(contact => (
+                <div key={contact.id} className="modal" id="modalAddressInfo">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <span className="close" id="closeContactForm" onClick={handleClose}>&times;</span>
+                            <span className="close" id="closeContactForm" onClick={() => { handleClose() }}>&times;</span>
                             <h2>Address</h2>
                         </div>
                         <div className="container">
@@ -24,8 +26,9 @@ const ContactInfoWindow = ({ contact, show, handleClose, deleteContact}) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
+            ))}
+        </div>
+    )
+}
 
 export default ContactInfoWindow

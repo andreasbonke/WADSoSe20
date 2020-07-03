@@ -1,7 +1,7 @@
 import React from 'react'
 import img_avatar from '../assets/img_avatar.jpg'
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, showContactInfo }) => {
 
     return (
         <div className="modal" id="contactList">
@@ -13,7 +13,7 @@ const ContactList = ({ contacts }) => {
                     <ul id="contactListEntries">
                         {contacts.map(contact => (
                             <li key={contact.id}>
-                                <div className="chip">
+                                <div className="chip" onClick={() => {showContactInfo(contact.id)}}>
                                     <img id="contactIcon" src={img_avatar} alt="Avatar Icon" />
                                     <span id="contactName">{contact.forname + " " + contact.name}</span>
                                 </div>

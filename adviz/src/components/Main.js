@@ -3,6 +3,7 @@ import ContactList from './ContactList'
 import Footer from './Footer'
 import MapView from './MapView';
 import AddContactForm from './AddContactForm';
+import ContactInfoWindow from './ContactInfoWindow';
 
 
 class Main extends Component {
@@ -12,13 +13,14 @@ class Main extends Component {
             { forname: 'Andreas', name: 'Bonke', street: 'Am Krusenick', postId: '12555', town: 'Berlin', country: 'Deutschland', isPrivate: false, id: 1 },
             { forname: 'Julia', name: 'Koldewitz', street: 'Am Krusenick', postId: '12555', town: 'Berlin', country: 'Deutschland', isPrivate: false, id: 2 },
             { forname: 'Marvin', name: 'Rausch', street: 'Gaillardstrasse', postId: '13187', town: 'Berlin', country: 'Deutschland', isPrivate: true, id: 3 },
-        ]
+        ],
+        show: false,
     }
 
+
+
     addContact = (contact) => {
-
         // prüfen ob id existiert
-
         //id hochsetzen
         contact.id = (Math.random().toFixed(1) * 100);
         let contacts = [...this.state.contacts, contact];
@@ -27,9 +29,28 @@ class Main extends Component {
         });
     }
 
+    deleteContact = (id) => {
+        // console.log(id);
+        let contacts = this.state.contacts.filter(contact => {
+            return contact.id !== id
+        });
+        this.setState({
+            contacts: contacts
+        });
+    }
+
+    showContactInfo = (id) => {
+        console.log(id)
+        document.querySelector("#modalAddressInfo").hidden = false;
+    }
+
+    handleClose = () => {
+        document.querySelector("#modalAddressInfo").hidden = true;
+    }
+
     // Methode wird ausgeführt nachdem die Komponenten in das DOM gerendert wurde
     componentDidMount() {
-        console.log('component mounted');
+        console.log(this.state.actualContact);
         document.querySelector("#modalAddress").hidden = true;
     }
 
@@ -46,7 +67,8 @@ class Main extends Component {
         return (
             <div id="main">
                 <MapView />
-                <ContactList contacts={this.state.contacts} />
+                <ContactInfoWindow contacts={this.state.contacts} deleteContact={this.deleteContact} handleClose={this.handleClose} />
+                <ContactList contacts={this.state.contacts} showContactInfo={this.showContactInfo} />
                 <AddContactForm addContact={this.addContact} />
                 <Footer />
             </div>
