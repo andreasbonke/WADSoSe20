@@ -1,18 +1,18 @@
 import React from 'react';
-import LoginForm from './components/LoginForm';
-import Main from './Main';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-
+import LoginForm from './components/LoginForm';
+import Main from './components/Main';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
       <div className="App">
-
+        <Navbar />
       </div>
       <Switch>
           <Route path="/" component={LoginForm} exact={true}></Route>

@@ -8,19 +8,10 @@ class ContactList extends Component {
             <div className="modal" id="contactList">
                 <div id="contact-content">
                     <div className="modal-header">
-                        <span className="close" id="closeContactForm">&times;</span>
                         <h2>Contact List</h2>
                     </div>
                     <div className="container" id="list-container">
-                    <ul id ="contactListEntries">
-                        <ContactListChip />
-                        <ContactListChip />
-                        <ContactListChip />
-                        <ContactListChip />
-                        <ContactListChip />
-                        <ContactListChip />
-                        <ContactListChip />
-                    </ul>
+                    <ContactListChip contacts={this.props.contacts} />
                     </div>
                 </div>
             </div>

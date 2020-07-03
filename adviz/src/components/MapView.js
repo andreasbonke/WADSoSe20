@@ -4,7 +4,6 @@ import 'leaflet/dist/leaflet.css';
 import data from '../assets/data'
 import Markers from '../constants/ContactMarker'
 
-
 class MapView extends Component {
     constructor(props) {
         super(props)
