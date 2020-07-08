@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import img_avatar from '../../assets/img_avatar.jpg'
 import {Consumer} from "../../context";
 import {Link} from "react-router-dom";
-import {AxiosInstance as axios} from "axios";
+import axios from "axios";
 
 class ContactList extends Component {
 
@@ -29,18 +29,18 @@ class ContactList extends Component {
                                     <ul id="contactListEntries">
                                         {contacts.map(contact => (
                                             <li key={contact.id}>
+                                                {/*TODO: add onClick Handler to display current Contact Position on Map*/}
                                                 <div className="chip">
                                                     <img id="contactIcon" src={img_avatar} alt="Avatar Icon"/>
                                                     <span id="contactName"> {contact.forename + " " + contact.name} </span>
                                                     <Link to={`main/contact/edit/${contact.id}`}>
-                                                        <span className="close">&lambda;</span>
+                                                        <div className="popup-button" id="edit-button">&lambda;</div>
                                                     </Link>
-                                                    <span className="close" id="closeContactForm" onClick={this.onClickDelete.bind(this, contact.id, dispatch)}>&times;</span>
+                                                    <div className="popup-button" id="delete-button"onClick={this.onClickDelete.bind(this, contact.id, dispatch)}>&times;</div>
                                                     <Link to={`main/contact/show/${contact.id}`}>
-                                                <span className="close" id="closeContactForm">&gt;</span>
+                                                <div className="popup-button" id="info-button">&gt;</div>
                                                     </Link>
                                                 </div>
-
                                             </li>))}
                                     </ul>
                                 </div>

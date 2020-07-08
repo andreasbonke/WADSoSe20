@@ -62,14 +62,14 @@ class AddContactForm extends Component {
                                   onSubmit={this.onSubmit.bind(this, dispatch)}>
                                 <div className="modal-header">
                                     <Link to={"/main"}>
-                                        <span className="close" id="closeContactForm"
+                                        <span className="close-button"
                                               onClick={this.clearInputFields}>&times;</span>
                                     </Link>
                                     <h2>Add New Address</h2>
                                 </div>
                                 <div className="container">
-                                    <label htmlFor="forname">Forname:</label>
-                                    <input type="text" id="forname" value={forename} onChange={this.handleChange}
+                                    <label htmlFor="forename">Forename:</label>
+                                    <input type="text" id="forename" value={forename} onChange={this.handleChange}
                                            required/>
                                     <label htmlFor="name">Name:</label>
                                     <input type="text" id="name" value={name} onChange={this.handleChange} required/>

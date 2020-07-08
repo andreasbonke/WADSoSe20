@@ -81,7 +81,7 @@ class EditContactForm extends Component {
                                   onSubmit={this.onSubmit.bind(this, dispatch)}>
                                 <div className="modal-header">
                                     <Link to={"/main"}>
-                                        <span className="close" id="closeContactForm"
+                                        <span className="close-button"
                                               onClick={this.clearInputFields}>&times;</span>
                                     </Link>
                                     <h2>Update Address</h2>

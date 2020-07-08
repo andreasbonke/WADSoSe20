@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Marker } from 'react-leaflet';
-import { LocationIcon } from './LocationIcon';
+import {LocationIcon} from "./LocationIcon";
 
 const ContactMarker = (props) => {
     const { contacts } = props;

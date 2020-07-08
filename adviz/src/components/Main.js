@@ -8,13 +8,11 @@ class Main extends Component {
 
     render() {
         return (
-            <Provider>
                 <div id="main">
                     <MapView/>
                     <Footer/>
                     <ContactList/>
                 </div>
-            </Provider>
         );
     }
 }

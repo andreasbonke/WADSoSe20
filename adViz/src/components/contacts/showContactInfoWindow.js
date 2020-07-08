@@ -39,7 +39,7 @@ class ShowContactInfoWindow extends Component {
                 <div className="modal-content">
                     <div className="modal-header">
                         <Link to={`/main`}>
-                            <span className="close" id="closeContactForm">&times;</span>
+                            <span className="close-button">&times;</span>
                         </Link>
 
                         <h2>Address</h2>
