@@ -7,12 +7,12 @@ const ContactMarker = (props) => {
     const markers = contacts.map((contact, index) => (
         <Marker
             key={index}
-            position={contact.geometry}
+            position={contact.markerPos}
             icon={LocationIcon}
         ></Marker>
     ));
 
-    return <Fragment>{markers}</Fragment>
+    return contacts.length!== 0 ?<Fragment>{markers}</Fragment> :null
 }
 
 export default ContactMarker;
