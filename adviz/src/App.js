@@ -10,7 +10,7 @@ import Navbar from './components/layout/Navbar';
 import ShowContactInfoWindow from "./components/contacts/ShowContactInfoWindow";
 import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
-import {Provider} from "./contactContext";
+import {Provider} from "./store/contactContext";
 
 function App() {
     return (

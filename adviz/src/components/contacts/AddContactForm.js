@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Consumer} from "../../contactContext";
+import {Consumer} from "../../store/contactContext";
 import  axios from 'axios';
 import {Link} from "react-router-dom";
 

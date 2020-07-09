@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import img_avatar from '../../assets/img_avatar.jpg'
-import {Consumer} from "../../contactContext";
+import {Consumer} from "../../store/contactContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
 

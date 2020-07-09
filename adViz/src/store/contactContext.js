@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 
-const Context = React.createContext();
+const ContactContext = React.createContext();
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,6 +26,17 @@ const reducer = (state, action) => {
                         : contact
                 )
             };
+        case "LOGIN_SUCCESS":
+            return {
+
+            };
+        case "LOGIN_ERROR":
+            return {
+                ...state
+            };
+        case "LOGOUT_SUCCESS":
+            return state
+
         default:
             return state;
     }
@@ -33,26 +44,41 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
     state = {
+        user:[],
         contacts: [],
         dispatch: action => {
             this.setState(state => reducer(state, action));
         }
+
     };
 
     async componentDidMount() {
-        await axios.get(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts`).then(res => {
-            console.log(res);
-            this.setState({contacts: res.data});
-        })
+        try {
+            await axios.get('https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts').then(res => {
+                this.setState({contacts: res.data});
+            })
+        } catch (e) {
+            console.log(`GET Request failed: ${e}`)
+        }
+
+        try {
+            axios.get('https://my-json-server.typicode.com/Inv1ctus/advizDB/user').then(res =>{
+                this.setState({user: res.data});
+                console.log(res.data)
+            })
+        } catch (e) {
+            console.log(`GET USER Request failed: ${e}`)
+        }
+
     }
 
     render() {
         return (
-            <Context.Provider value={this.state}>
+            <ContactContext.Provider value={this.state}>
                 {this.props.children}
-            </Context.Provider>
+            </ContactContext.Provider>
         );
     }
 }
 
-export const Consumer = Context.Consumer;
+export const Consumer = ContactContext.Consumer;
