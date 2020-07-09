@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
@@ -10,7 +10,7 @@ import Navbar from './components/layout/Navbar';
 import ShowContactInfoWindow from "./components/contacts/ShowContactInfoWindow";
 import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
-import {Provider} from "./context";
+import {Provider} from "./contactContext";
 
 function App() {
     return (
@@ -22,9 +22,9 @@ function App() {
                 <Switch>
                     <Route path="/" component={LoginForm} exact={true}></Route>
                     <Route path="/main" component={Main} exact={true}></Route>
-                    <Route path="/main/contact/show/:id" component={ShowContactInfoWindow} exact={true}></Route>
-                    <Route path="/main/add" component={AddContact} exact={true}></Route>
-                    <Route path="/main/contact/edit/:id" component={EditContactForm} exact={true}></Route>
+                    <Route path="/show/:id" component={ShowContactInfoWindow} exact={true}></Route>
+                    <Route path="/add" component={AddContact} exact={true}></Route>
+                    <Route path="/edit/:id" component={EditContactForm} exact={true}></Route>
                 </Switch>
             </Router>
         </Provider>

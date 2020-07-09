@@ -7,12 +7,13 @@ class Main extends Component {
 
     render() {
         return (
-                <div id="main">
-                    <MapView/>
-                    <Footer/>
-                    <ContactList/>
-                </div>
+            <div id="main">
+                <MapView/>
+                <Footer/>
+                <ContactList/>
+            </div>
         );
     }
 }
+
 export default Main;

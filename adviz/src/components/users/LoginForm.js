@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class LoginForm extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            name: "",
-            password: ""
-        }
+    state = {
+        name: "",
+        password: ""
     }
 
-    handleNameChange = (e) => {
-        this.setState({ name: e.target.value })
-    }
-
-    handlePasswordChange = (e) => {
-        this.setState({ password: e.target.value })
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        // TODO: implement axios Request and Redux Handling for User Login
+        console.log(this.state)
         this.props.history.push('/main');
     }
 
@@ -33,9 +29,11 @@ class LoginForm extends Component {
                     </div>
                     <div className="container">
                         <label htmlFor="username"><b>Username</b></label>
-                        <input type="text" placeholder="Username" value={this.state.name} onChange={this.handleNameChange} required />
+                        <input type="text" id="username" placeholder="Username"
+                               onChange={this.handleChange} required/>
                         <label htmlFor="password"><b>Password</b></label>
-                        <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} required />
+                        <input type="password" id="password" placeholder="Password"
+                               onChange={this.handleChange} required/>
                         <button type="submit" className="form-button" id="logInBtn">Log In</button>
                     </div>
                 </form>
@@ -43,7 +41,6 @@ class LoginForm extends Component {
         )
     }
 }
-
 
 
 export default LoginForm;

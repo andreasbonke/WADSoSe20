@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-    Link
+    Link, withRouter
 } from "react-router-dom";
 
 class Navbar extends Component {
@@ -9,14 +9,14 @@ class Navbar extends Component {
         return (
             <header>
                 <div>
-                    <GetGreeting name="admin" />
+                    <GetGreeting name="admin"/>
                 </div>
                 <nav>
                     <Link to="/">
-                        <button type="button" className="nav-button" id="logOutBtn" >Log Out</button>
+                        <button type="button" className="nav-button" id="logOutBtn">Log Out</button>
                     </Link>
-                    <Link to="/main/add">
-                        <button type="button" className="nav-button" id="addNewContactFormBtn" >new Address</button>
+                    <Link to="/add">
+                        <button type="button" className="nav-button" id="addNewContactFormBtn">new Address</button>
                     </Link>
 
                 </nav>
@@ -31,4 +31,4 @@ function GetGreeting(props) {
     return <h1 id="my_header"> Welcome {props.name} at AdViz</h1>;
 }
 
-export default Navbar;
+export default withRouter(Navbar);

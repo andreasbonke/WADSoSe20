@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Consumer} from "../../context";
-import {AxiosInstance as axios} from 'axios';
+import {Consumer} from "../../contactContext";
+import  axios from 'axios';
 import {Link} from "react-router-dom";
 
 class AddContactForm extends Component {
@@ -11,7 +11,8 @@ class AddContactForm extends Component {
         postId: "",
         town: "",
         country: "",
-        isPrivate: false
+        isPrivate: false,
+        markerPos: []
     }
 
     handleChange = (e) => {
@@ -26,27 +27,59 @@ class AddContactForm extends Component {
         });
     }
 
+    async searchContactPosition(newContact) {
+        let markerPos = [0,0]
+            let params = new URLSearchParams(newContact.street + " " + newContact.postId + " " + newContact.town);
+            let url = "https://api.tomtom.com/search/2/geocode/" + params + ".json?countrySet=DE&key=SL0aR93PQoAaWTez8PLTAGhARjEgeDhf";
+            await fetch(url)
+                .then(res => res.json())
+                .then(
+                    (results) => {
+                        let latitude = results["results"][0]["position"]["lat"];
+                        let longitude = results["results"][0]["position"]["lon"];
+                        if (latitude !== "undefined") {
+                             markerPos = [latitude, longitude]
+                        }
+                    }
+                )
+
+            newContact.markerPos= markerPos
+    }
+
     onSubmit = async (dispatch, e) => {
         e.preventDefault();
-        const {forename, name, street, postId, town, country, isPrivate} = this.state;
 
-        const newContact = {
+        const {forename, name, street, postId, town, country, isPrivate, markerPos} = this.state;
+
+        let newContact = {
             forename,
             name,
             street,
             postId,
             town,
             country,
-            isPrivate
+            isPrivate,
+            markerPos,
         };
 
-        const res = await axios.post(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts`, {newContact}
-        ).then(res => {
-            console.log(res.data);
-        });
-        dispatch({type: "ADD_CONTACT", payload: res.data});
-
-        this.clearInputFields();
+        this.searchContactPosition(newContact)
+        try {
+            await axios.post(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts`, newContact
+            ).then(res => {
+                dispatch({type: "ADD_CONTACT", payload: res.data});
+                this.setState({
+                    forename: "",
+                    name: "",
+                    street: "",
+                    postId: "",
+                    town: "",
+                    country: "",
+                    isPrivate: false
+                });
+            });
+        } catch (e) {
+            console.log(`POST Request failed: ${e}`)
+        }
         this.props.history.push("/main");
     };
 
@@ -95,18 +128,6 @@ class AddContactForm extends Component {
                 }}
             </Consumer>
         );
-    }
-
-    clearInputFields() {
-        this.setState({
-            forename: "",
-            name: "",
-            street: "",
-            postId: "",
-            town: "",
-            country: "",
-            isPrivate: false
-        });
     }
 }
 

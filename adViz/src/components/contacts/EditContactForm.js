@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Consumer} from "../../context";
-import {AxiosInstance as axios} from 'axios';
+import {Consumer} from "../../contactContext";
+import  axios from 'axios';
 import {Link} from "react-router-dom";
 
 class EditContactForm extends Component {
@@ -11,7 +11,8 @@ class EditContactForm extends Component {
         postId: "",
         town: "",
         country: "",
-        isPrivate: false
+        isPrivate: false,
+        id: ""
     }
 
     handleChange = (e) => {
@@ -28,44 +29,64 @@ class EditContactForm extends Component {
 
     async componentDidMount() {
         const {id} = this.props.match.params;
-        await axios.get(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${id}`).then(res =>{
-            console.log(res.data);
 
-            const contact = res.data;
-            this.setState({
-                forename: contact.forename,
-                name: contact.name,
-                street: contact.street,
-                postId: contact.postId,
-                town: contact.town,
-                country: contact.country,
-                isPrivate: contact.isPrivate
+        try {
+            await axios.get(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${id}`).then(res => {
+                console.log(res.data);
+
+                const contact = res.data;
+                this.setState({
+                    forename: contact.forename,
+                    name: contact.name,
+                    street: contact.street,
+                    postId: contact.postId,
+                    town: contact.town,
+                    country: contact.country,
+                    isPrivate: contact.isPrivate,
+                    id: contact.id
+                });
             });
-        });
+        } catch (e) {
+            console.log(`GET Request failed: ${e}`)
+        }
+
     }
 
     onSubmit = async (dispatch, e) => {
         e.preventDefault();
-        const {forename, name, street, postId, town, country, isPrivate} = this.state;
+        const {forename, name, street, postId, town, country, isPrivate, id} = this.state;
 
-        const updateContact = {
+        let updateContact = {
             forename,
             name,
             street,
             postId,
             town,
             country,
-            isPrivate
+            isPrivate,
+            id
         };
 
-        const id = this.props.match.params;
+        try {
+            const res = await axios.put(
+                `https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${updateContact.id}`, updateContact);
 
-        const res = await axios.put(
-            `https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${id}`, {updateContact});
+            console.log(res.data)
+            dispatch({type: "UPDATE_CONTACT", payload: res.data});
+        } catch (e) {
+            console.log(`PUT Request failed: ${e}`)
+        }
 
-        dispatch({type: "UPDATE_CONTACT", payload: res.data});
+        this.setState({
+            forename: "",
+            name: "",
+            street: "",
+            postId: "",
+            town: "",
+            country: "",
+            isPrivate: false
+        });
 
-        this.clearInputFields();
         this.props.history.push("/main");
     };
 
@@ -88,7 +109,7 @@ class EditContactForm extends Component {
                                 </div>
                                 <div className="container">
                                     <label htmlFor="forname">Forname:</label>
-                                    <input type="text" id="forname" value={forename} onChange={this.handleChange}
+                                    <input type="text" id="forename" value={forename} onChange={this.handleChange}
                                            required/>
                                     <label htmlFor="name">Name:</label>
                                     <input type="text" id="name" value={name} onChange={this.handleChange} required/>
@@ -114,18 +135,6 @@ class EditContactForm extends Component {
                 }}
             </Consumer>
         );
-    }
-
-    clearInputFields() {
-        this.setState({
-            forename: "",
-            name: "",
-            street: "",
-            postId: "",
-            town: "",
-            country: "",
-            isPrivate: false
-        });
     }
 }
 
