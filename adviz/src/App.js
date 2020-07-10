@@ -10,11 +10,12 @@ import Navbar from './components/layout/Navbar';
 import ShowContactInfoWindow from "./components/contacts/ShowContactInfoWindow";
 import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
-import {Provider} from "./store/contactContext";
+import {Provider} from "react-redux";
+import store from "./store/store";
 
 function App() {
     return (
-        <Provider>
+        <Provider store={store}>
             <Router>
                 <div className="App">
                     <Navbar/>
