@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {addContact} from '../../store/actions/contactActions'
+import {addContact} from '../../store/actions/contactActions';
+import PropTypes from 'prop-types';
 
 class AddContactForm extends Component {
     state = {
@@ -115,11 +116,9 @@ class AddContactForm extends Component {
         );
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        addContact: (contact) => dispatch(addContact(contact))
-    }
-}
 
+AddContactForm.propsType ={
+    addContact: PropTypes.func.isRequired
+};
 
-export default connect(null, mapDispatchToProps)(AddContactForm);
+export default connect(null, {addContact})(AddContactForm);

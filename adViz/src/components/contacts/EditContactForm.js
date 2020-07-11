@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
+import {getContact, updateContact} from "../../store/actions/contactActions";
 
 class EditContactForm extends Component {
     state = {
@@ -12,6 +14,24 @@ class EditContactForm extends Component {
         country: "",
         isPrivate: false,
         id: ""
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps, nextState) {
+        const {forename, name, street, postId,town,country,isPrivate,} = nextProps.contact;
+        this.setState({
+            forename,
+            name,
+            street,
+            postId,
+            town,
+            country,
+            isPrivate,
+        });
+    }
+
+    componentDidMount() {
+        const { id } = this.props.match.params;
+        this.props.getContact(id);
     }
 
     handleChange = (e) => {
@@ -28,11 +48,38 @@ class EditContactForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const {forename ,name, street, postId, town, country, isPrivate } = this.state;
+        const { id } = this.props.match.params;
+
+        const updateContact = {
+            id,
+            forename,
+            name,
+            street,
+            postId,
+            town,
+            country,
+            isPrivate
+        }
+        //this.searchContactPosition(updateContact)
+
+        this.props.updateContact(updateContact)
+
+        this.setState({
+            forename: "",
+            name: "",
+            street: "",
+            postId: "",
+            town: "",
+            country: "",
+            isPrivate: false,
+        });
+
         this.props.history.push("/main");
     };
 
     render() {
-        const {forename, name, street, postId, town, country, isPrivate} = this.props.contact;
+        const {forename, name, street, postId, town, country, isPrivate} = this.state;
         return (
             <div className="modal" id="modalAddress">
                 <form className="modal-content" id="AddressForm"
@@ -71,11 +118,14 @@ class EditContactForm extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    let id = ownProps.match.params;
-    return {
-        contacts: state.contacts.find(contact => contact.id ===id)
-    }
-}
+EditContactForm.propTypes = {
+    contact: PropTypes.object.isRequired,
+    getContact: PropTypes.func.isRequired,
+    updateContact: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps)(EditContactForm);
+const mapStateToProps = state => ({
+    contact: state.contact.contact[0]
+});
+
+export default connect(mapStateToProps,{getContact, updateContact})(EditContactForm);

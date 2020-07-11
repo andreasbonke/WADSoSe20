@@ -1,39 +1,84 @@
-import React from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {getContact} from "../../store/actions/contactActions";
 
-const ShowContactInfoWindow = ({contact}) => {
+class ShowContactInfoWindow extends Component{
+    state = {
+        forename: "",
+        name: "",
+        street: "",
+        postId: "",
+        town: "",
+        country: "",
+        isPrivate: false
+    }
 
-    return (
-        <div className="modal" id="modalAddressInfo">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <Link to={`/main`}>
-                        <span className="close-button">&times;</span>
-                    </Link>
-                    <h2>Address</h2>
-                </div>
-                <div className="container">
-                    <label htmlFor="forename">Forename:</label>
-                    <input type="text" id="forename" value={contact.forename} readOnly={true} disabled={true}/>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" value={contact.name} readOnly={true} disabled={true}/>
-                    <label htmlFor="street">Street:</label>
-                    <input type="text" id="street" value={contact.street} readOnly={true} disabled={true}/>
-                    <label htmlFor="postId">Postcode:</label>
-                    <input type="text" id="postId" value={contact.postId} readOnly={true} disabled={true}/>
-                    <label htmlFor="town">Town:</label>
-                    <input type="text" id="town" value={contact.town} readOnly={true} disabled={true}/>
-                    <label htmlFor="country">Country:</label>
-                    <input type="text" id="country" value={contact.country} readOnly={true} disabled={true}/>
-                    <label htmlFor="updateAddressCheck">Private:</label>
-                    <input type="checkbox" id="updateAddressCheck" value={contact.isPrivate}
-                           checked={contact.isPrivate}
-                           disabled={true}/>
+    UNSAFE_componentWillReceiveProps(nextProps, nextState) {
+        const {forename, name, street, postId,town,country,isPrivate,} = nextProps.contact;
+        this.setState({
+            forename,
+            name,
+            street,
+            postId,
+            town,
+            country,
+            isPrivate,
+        });
+    }
+
+    componentDidMount() {
+        const { id } = this.props.match.params;
+        this.props.getContact(id);
+    }
+
+    render() {
+        console.log(this.props.contact)
+        const {forename ,name, street, postId, town, country, isPrivate } = this.state;
+        return (
+            <div className="modal" id="modalAddressInfo">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <Link to={`/main`}>
+                            <span className="close-button">&times;</span>
+                        </Link>
+                        <h2>Address</h2>
+                    </div>
+                    <div className="container">
+                        <label htmlFor="forename">Forename:</label>
+                        <input type="text" id="forename" value={forename} readOnly={true} disabled={true}/>
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" value={name} readOnly={true} disabled={true}/>
+                        <label htmlFor="street">Street:</label>
+                        <input type="text" id="street" value={street} readOnly={true} disabled={true}/>
+                        <label htmlFor="postId">Postcode:</label>
+                        <input type="text" id="postId" value={postId} readOnly={true} disabled={true}/>
+                        <label htmlFor="town">Town:</label>
+                        <input type="text" id="town" value={town} readOnly={true} disabled={true}/>
+                        <label htmlFor="country">Country:</label>
+                        <input type="text" id="country" value={country} readOnly={true} disabled={true}/>
+                        <label htmlFor="updateAddressCheck">Private:</label>
+                        <input type="checkbox" id="updateAddressCheck" value={isPrivate}
+                               checked={isPrivate}
+                               disabled={true}/>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    )
+        )
+    }
+
+
 }
 
-export default ShowContactInfoWindow;
+ShowContactInfoWindow.propTypes = {
+    //contact: PropTypes.object.isRequired,
+    getContact: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    contact: state.contact.contact[0]
+});
+
+export default connect(mapStateToProps, {getContact}) (ShowContactInfoWindow);

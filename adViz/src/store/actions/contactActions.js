@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 export const getContacts = () => async dispatch => {
-    const res = await axios.get('https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts');
+    const res = await axios.get('http://localhost:3300/adViz/contacts');
 
     dispatch({
         type: GET_CONTACTS,
@@ -18,7 +18,7 @@ export const getContacts = () => async dispatch => {
 
 export const getContact = id => async dispatch => {
     const res = await axios.get(
-        `https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${id}`
+        `http://localhost:3300/adViz/contacts/${id}`
     );
 
     dispatch({
@@ -29,7 +29,7 @@ export const getContact = id => async dispatch => {
 
 export const addContact = contact => async dispatch => {
     const res = await axios.post(
-        `https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts`,
+        `http://localhost:3300/adViz/contacts`,
         contact
     );
 
@@ -41,7 +41,7 @@ export const addContact = contact => async dispatch => {
 
 export const deleteContact = id => async dispatch => {
     try {
-        await axios.delete(`https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${id}`);
+        await axios.delete(`http://localhost:3300/adViz/contacts/${id}`);
 
         dispatch({
             type: DELETE_CONTACT,
@@ -57,7 +57,7 @@ export const deleteContact = id => async dispatch => {
 
 export const updateContact = contact => async dispatch => {
     const res = await axios.put(
-        `https://my-json-server.typicode.com/Inv1ctus/advizDB/contacts/${contact.id}`,
+        `http://localhost:3300/adViz/contacts/${contact.id}`,
         contact
     );
 
