@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Map, Marker, Popup, TileLayer} from 'react-leaflet'
+import {LayersControl, Map, Marker, Popup, TileLayer} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {LocationIcon} from "../../constants/LocationIcon";
+const {BaseLayer} = LayersControl;
 
 class MapView extends Component {
 
@@ -22,10 +23,20 @@ class MapView extends Component {
         if (isAdmin) {
             return (
                 <Map id="map" center={currentLocation} zoom={zoom}>
-                    <TileLayer
-                        attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
+                    <LayersControl position="topright">
+                      <BaseLayer checked name="OpenStreetMap.Mapnik">
+                          <TileLayer
+                              attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                          />
+                      </BaseLayer>
+                      <BaseLayer name="OpenStreetMap.Toner">
+                          <TileLayer
+                              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                              url="http://tile.stamen.com/toner/{z}/{x}/{y}.png"
+                          />
+                      </BaseLayer>
+                    </LayersControl>
                     <GetAllAdminMarkers contacts={contacts}/>
                 </Map>
             )

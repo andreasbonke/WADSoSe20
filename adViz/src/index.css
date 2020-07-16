@@ -12,13 +12,6 @@ body {
 
 /* Mobile Screen*/
 @media screen and (max-width: 40em) {
-  main {
-    grid-template-areas: "nav""map"
-  }
-
-  header {
-    display: block;
-  }
 
   nav {
     min-height: 18vh;
@@ -43,10 +36,10 @@ body {
   }
 
   .modal#contactList {
-    margin: 27vh auto 0 5vh;
-    width: 60%;
+    margin: 30vh auto 0 5vh;
+    width: 55%;
     min-width: 250px;
-    overflow: hidden;
+    //overflow: hidden;
     background-color: rgba(0, 0, 0, 0);
   }
 
@@ -69,33 +62,48 @@ body {
 
 }
 
+@media screen and (max-width: 65em) {
+  h1{
+    width: 100vw;
+  }
+
+  #my_header{
+    float: none;
+  }
+
+ footer {
+   display: none;
+ }
+}
+
 /* Desktop Screen*/
 @media screen and (min-width: 40em) {
-  main {
-    grid-template-areas: "header nav""map map"" footer footer"
-  }
 
   header {
     padding: 0px 20px;
-    min-height: 7vh;
+    min-height: 10vh;
+  }
+
+  #my_header{
+    float: left;
   }
 
   nav {
-    min-height: 7vh;
+    min-height: 10vh;
   }
 
   .nav-button {
     float: right;
-    margin: 8px 10px;
+    margin: 20px 10px;
     width: 10em;
   }
 
   #map {
-    min-height: 80vh;
+    min-height: 87vh;
   }
 
   footer {
-    min-height: 2.9vh;
+    min-height: 3vh;
   }
 
   .modal#contactList {
@@ -111,14 +119,24 @@ body {
   }
 }
 
-main {
-  display: grid;
-}
-
 header {
   color: white;
-  grid-area: header;
   background: #74acf2;
+}
+
+#deleteAccount{
+  background-color: #74acf2;
+  color: tomato;
+  cursor: pointer;
+  border-style: none;
+  box-shadow: none;
+}
+
+#deleteAccount:hover{
+  background-color: tomato;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
 }
 
 h1 {
@@ -145,7 +163,6 @@ h2 {
 
 nav {
   padding: 0px 8px;
-  grid-area: nav;
   background: #74acf2;
 }
 
@@ -154,7 +171,7 @@ nav {
   color: white;
   cursor: pointer;
   border: white;
-  border-width: 2px;
+  border-width: 1.5px;
   border-style: solid;
   font-weight: bold;
   border-radius: 5px;
@@ -171,9 +188,7 @@ nav {
 }
 
 #map {
-  grid-area: map;
   z-index: 0;
-
 }
 
 .modal {
@@ -184,7 +199,6 @@ nav {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-
 }
 
 .modal-content {
@@ -337,7 +351,7 @@ input[type=number]{
   margin: 5px 5% 5px 0;
   color: #74acf2;
   float: right;
-  border: 2px solid white;
+  border: 1.5px solid white;
   border-radius: 5px;
   padding: 0 5px 0 5px;
   text-align: center;
@@ -371,13 +385,11 @@ input[type=number]{
 }
 
 #homepageImg {
-  position: fixed;
   width: 100vw;
 }
 
 footer {
   color: white;
-  grid-area: footer;
   background: #74acf2;
   text-align: center;
 }
@@ -402,6 +414,10 @@ footer {
 
   footer{
     background: #2f2f2f;
+  }
+
+  #deleteAccount{
+    background-color: #2f2f2f;
   }
 
   .nav-button{

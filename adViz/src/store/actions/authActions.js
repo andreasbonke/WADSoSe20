@@ -31,6 +31,19 @@ export const createUser = user => async dispatch => {
     })
 };
 
+export const deleteUser = username => async dispatch =>{
+    await axios.delete(`http://localhost:3300/users/${username}`).then((response) => {
+        if (response.status === 200) {
+            dispatch({type: LOGOUT, payload: null});
+        }
+    }).catch(function (error) {
+        if (error.response) {
+            alert("username doesn't exsist!");
+        }
+    })
+
+}
+
 export const logout = () => dispatch =>{
     dispatch({type: LOGOUT, payload: null});
 }

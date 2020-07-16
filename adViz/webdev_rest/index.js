@@ -12,9 +12,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-// ToDO add bcrypt/ JWT
-// ToDO add auth Token to requests (generation and check)
-// ToDO add signup endpoint
+// TODO: add bcrypt/ JWT
+// TODO: add auth Token to requests (generation and check)
 
 /**
  * endpoint to listen for get requests
