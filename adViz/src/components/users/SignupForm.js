@@ -1,25 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {authUser} from "../../store/actions/authActions";
+import {createUser} from "../../store/actions/authActions";
 import {Link} from "react-router-dom";
 
 class LoginForm extends Component {
 
     state = {
         username: "",
-        password: ""
+        password: "",
+        isAdmin: false
     }
 
     UNSAFE_componentWillReceiveProps(nextProps, nextState) {
-       if (nextProps.user.username !== ""){
-           this.props.history.push("/main");
-           this.setState({
-               username: "",
-               password: "",
-               isAdmin: false,
-           })
-       }
+        if (nextProps.user.username !== ""){
+            this.props.history.push("/main");
+            this.setState({
+                username: "",
+                password: "",
+                isAdmin: false,
+            })
+        }
     }
 
     handleChange = (e) => {
@@ -27,17 +28,23 @@ class LoginForm extends Component {
             [e.target.id]: e.target.value
         })
     }
+    handleCheckboxChange = (e) => {
+        this.setState({
+            isAdmin: !this.state.isAdmin
+        });
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const {username, password} = this.state;
+        const {username, password, isAdmin} = this.state;
 
         let user = {
             username,
-            password
+            password,
+            isAdmin
         }
 
-        this.props.authUser(user)
+        this.props.createUser(user)
     }
 
     render() {
@@ -48,18 +55,21 @@ class LoginForm extends Component {
                         <Link to={"/"}>
                             <span className="close-button">&times;</span>
                         </Link>
-                        <h2>Sign in to Adviz</h2>
+                        <h2>Sign up to Adviz</h2>
                     </div>
                     <div className="container">
-                        <label htmlFor="username"><b>Username</b></label>
+                        <label htmlFor="username"><b>Username *</b></label>
                         <input type="text" id="username" placeholder="Username"
                                onChange={this.handleChange} required/>
-                        <label htmlFor="password"><b>Password</b></label>
+                        <label htmlFor="username"><b>Password *</b></label>
                         <input type="password" id="password" placeholder="Password"
                                onChange={this.handleChange} required/>
-                        <button type="submit" className="form-button" id="logInBtn">Sign in</button>
-                        <Link to="/signUp">
-                            <span> Create an account.</span>
+                        <label htmlFor="password"><b>Admin rights </b></label>
+                        <input type="checkbox" id="isAdmin" placeholder="Email"
+                               value={this.state.isAdmin} checked={this.state.isAdmin} onChange={this.handleCheckboxChange}/>
+                        <button type="submit" className="form-button" id="logInBtn">Sign up for Adviz</button>
+                        <Link to="/signIn">
+                            <span> Sign in</span>
                         </Link>
                     </div>
                 </form>
@@ -69,7 +79,7 @@ class LoginForm extends Component {
 }
 
 LoginForm.propsType = {
-    authUser: PropTypes.func.isRequired,
+    createUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
 }
 
@@ -78,4 +88,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, {authUser})(LoginForm);
+export default connect(mapStateToProps, {createUser})(LoginForm);

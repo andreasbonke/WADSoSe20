@@ -74,6 +74,32 @@ app.post('/login', (req, res) => {
 })
 
 /**
+ * endpoint to listen for post requests to create new user
+ */
+app.post('/users', (req, res) => {
+    merchant_model.createNewUser(req.body)
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(401).send(error);
+        })
+})
+
+/**
+ * endpoint to listen for delete requests
+ */
+app.delete('/users/:username', (req, res) => {
+    merchant_model.deleteUser(req.params.username)
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
+
+/**
  * endpoint to listen for put requests
  */
 app.put('/adViz/contacts/:id', (req, res) => {

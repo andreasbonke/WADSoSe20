@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-  background: lightslategrey;
+  background: #74acf2;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -17,11 +17,11 @@ body {
   }
 
   header {
-    display: none;
+    display: block;
   }
 
   nav {
-    min-height: 22vh;
+    min-height: 18vh;
   }
 
   h1 {
@@ -34,8 +34,8 @@ body {
     width: 100%;
   }
 
-  map {
-    min-height: 75vh;
+  #map {
+    min-height: 72vh;
   }
 
   footer {
@@ -43,9 +43,10 @@ body {
   }
 
   .modal#contactList {
-    margin: 25vh auto 15% 5vh;
+    margin: 27vh auto 0 5vh;
     width: 60%;
     min-width: 250px;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0);
   }
 
@@ -89,8 +90,8 @@ body {
     width: 10em;
   }
 
-  map {
-    min-height: 90vh;
+  #map {
+    min-height: 80vh;
   }
 
   footer {
@@ -117,15 +118,25 @@ main {
 header {
   color: white;
   grid-area: header;
-  background: lightslategrey;
+  background: #74acf2;
 }
 
 h1 {
+  color: white;
   margin-top: 2vh;
   font-size: 200%;
   letter-spacing: 0.08em;
   text-shadow: 1px 1px 2px lightgray;
   text-align: center;
+}
+
+a:-webkit-any-link{
+  color: rgb(8, 100, 207);
+  text-decoration: none;
+}
+
+a:-webkit-any-link:hover{
+  text-decoration-line: underline;
 }
 
 h2 {
@@ -135,11 +146,11 @@ h2 {
 nav {
   padding: 0px 8px;
   grid-area: nav;
-  background: lightslategrey;
+  background: #74acf2;
 }
 
 .nav-button {
-  background-color: lightslategray;
+  background-color: #74acf2;
   color: white;
   cursor: pointer;
   border: white;
@@ -192,7 +203,7 @@ nav {
 }
 
 #modalLogIn {
-  background-color: #ffffff;
+  background-color: rgba(1,1,1,0.6);
 }
 
 .modal-header {
@@ -214,7 +225,6 @@ nav {
   height: 60vh;
   padding: 16px 0 16px 16px;
 }
-
 
 ul {
   height: inherit;
@@ -253,7 +263,7 @@ li {
 }
 
 #contactName {
-  color: lightslategray;
+  color: #74acf2;
   height: 100%;
   margin: 10px;
   font-size: medium;
@@ -325,7 +335,7 @@ input[type=number]{
   line-height: 55px;
   width: 100px;
   margin: 5px 5% 5px 0;
-  color: lightslategray;
+  color: #74acf2;
   float: right;
   border: 2px solid white;
   border-radius: 5px;
@@ -335,7 +345,7 @@ input[type=number]{
 }
 
 #moreAction-button{
-  color: lightslategray;
+  color: #74acf2;
   margin-right: 5%;
   font-size: 28px;
   font-weight: bold;
@@ -360,10 +370,15 @@ input[type=number]{
   color: orange;
 }
 
+#homepageImg {
+  position: fixed;
+  width: 100vw;
+}
+
 footer {
   color: white;
   grid-area: footer;
-  background: lightslategrey;
+  background: #74acf2;
   text-align: center;
 }
 
@@ -372,6 +387,40 @@ footer {
 }
 
 @media (prefers-color-scheme: dark) {
+
+  body {
+    background: #2f2f2f;
+  }
+
+  header {
+    background: #2f2f2f;
+  }
+
+  nav{
+    background: #2f2f2f;
+  }
+
+  footer{
+    background: #2f2f2f;
+  }
+
+  .nav-button{
+    background: #2f2f2f;
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=number]{
+    background-color: #3a3a3a;
+    color: white;
+  }
+
+  input[type=text]:focus,
+  input[type=password]:focus,
+  input[type=number]:focus{
+    background-color: whitesmoke;
+    color: black;
+  }
   
   #modalLogIn {
     background-color: #3a3a3a;
@@ -417,5 +466,12 @@ footer {
     color: #d8d8d8;
   }
 
+  .close-button {
+    color: whitesmoke;
+  }
 
+  a:-webkit-any-link{
+    color: whitesmoke;
+    text-decoration: none;
+  }
 }

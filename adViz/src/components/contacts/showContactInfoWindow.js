@@ -29,20 +29,6 @@ class ShowContactInfoWindow extends Component {
         });
     }
 
-    /*static getDerivedStateFromProps(props,state){
-        if(props.contact.forename !== state.forename) {
-            return {
-                forename: props.forename > state.forename,
-                name: props.name > state.name,
-                street: props.street > state.street,
-                postId: props.postId > state.postId,
-                town: props.town > state.town,
-                country: props.country > state.country,
-                isPrivate: props.isPrivate > state.isPrivate
-            };
-        }
-    }*/
-
     componentDidMount() {
         const {id} = this.props.match.params;
         this.props.getContact(id);
@@ -86,12 +72,12 @@ class ShowContactInfoWindow extends Component {
 }
 
 ShowContactInfoWindow.propTypes = {
-    //contact: PropTypes.object.isRequired,
+    contact: PropTypes.object.isRequired,
     getContact: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-    contact: state.contact.contact[0]
+    contact: state.contact.contact
 });
 
 export default connect(mapStateToProps, {getContact})(ShowContactInfoWindow);

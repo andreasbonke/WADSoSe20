@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 import {getContacts} from "../store/actions/contactActions";
 
 class Main extends Component {
-
     componentDidMount() {
         this.props.getContacts()
     }
@@ -29,7 +28,7 @@ Main.propsType = {
 }
 
 const mapStateToProps = state => ({
-    contacts: state.contact.contacts
+    contacts: state.contact.contacts,
 });
 
 export default connect(mapStateToProps, {getContacts})(Main);

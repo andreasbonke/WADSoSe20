@@ -87,7 +87,7 @@ class EditContactForm extends Component {
 
     render() {
         const {forename, name, street, postId, town, country, isPrivate} = this.state;
-        return this.state && (
+        return (
             <div className="modal" id="modalAddress">
                 <form className="modal-content" id="AddressForm"
                       onSubmit={this.onSubmit}>
@@ -126,13 +126,13 @@ class EditContactForm extends Component {
 }
 
 EditContactForm.propTypes = {
-    //contact: PropTypes.object.isRequired,
+    contact: PropTypes.object.isRequired,
     getContact: PropTypes.func.isRequired,
     updateContact: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    contact: state.contact.contact[0]
+    contact: state.contact.contact
 });
 
 export default connect(mapStateToProps, {getContact, updateContact})(EditContactForm);

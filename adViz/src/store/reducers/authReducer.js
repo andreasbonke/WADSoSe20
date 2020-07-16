@@ -21,8 +21,8 @@ export default function (state = initState, action) {
             }
         case "LOGOUT":
             return {
-                ...state,
-                user: initState
+                user: initState,
+                loggedIn: false
             }
         default:
             return state;

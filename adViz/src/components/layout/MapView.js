@@ -3,7 +3,6 @@ import {Map, Marker, Popup, TileLayer} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getContacts} from '../../store/actions/contactActions'
 import {LocationIcon} from "../../constants/LocationIcon";
 
 class MapView extends Component {
@@ -71,7 +70,6 @@ function GetAllAdminMarkers(props) {
 
 MapView.propTypes = {
     contacts: PropTypes.array.isRequired,
-    getContacts: PropTypes.func.isRequired,
     isAdmin: PropTypes.bool.isRequired,
 }
 
@@ -80,4 +78,4 @@ const mapStateToProps = state => ({
     isAdmin: state.auth.user.isAdmin
 })
 
-export default connect(mapStateToProps, {getContacts})(MapView);
+export default connect(mapStateToProps)(MapView);
