@@ -1,10 +1,24 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {authUser} from "../../store/actions/authActions";
 
 class LoginForm extends Component {
 
     state = {
-        name: "",
+        username: "",
         password: ""
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps, nextState) {
+       if (nextProps.user.username !== ""){
+           this.props.history.push("/main");
+           this.setState({
+               username: "",
+               password: "",
+               isAdmin: false,
+           })
+       }
     }
 
     handleChange = (e) => {
@@ -15,9 +29,14 @@ class LoginForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // TODO: implement axios Request and Redux Handling for User Login
-        console.log(this.state)
-        this.props.history.push('/main');
+        const {username, password} = this.state;
+
+        let user = {
+            username,
+            password
+        }
+
+        this.props.authUser(user)
     }
 
     render() {
@@ -42,5 +61,14 @@ class LoginForm extends Component {
     }
 }
 
+LoginForm.propsType = {
+    authUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
+}
 
-export default LoginForm;
+const mapStateToProps = state => ({
+    user: state.auth.user
+});
+
+
+export default connect(mapStateToProps, {authUser})(LoginForm);

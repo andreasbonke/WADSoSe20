@@ -46,13 +46,17 @@ app.get('/adViz/contacts/:id', (req, res) => {
  * endpoint to listen for post requests
  */
 app.post('/adViz/contacts', (req, res) => {
-    console.log(req.body);
     merchant_model.createContact(req.body)
         .then(response => {
             res.status(200).send(response);
         })
         .catch(error => {
-            res.status(500).send(error);
+            if (error === 'address was not found') {
+                res.status(402).send(error);
+            } else {
+                res.status(500).send(error);
+            }
+
         })
 })
 
@@ -78,7 +82,11 @@ app.put('/adViz/contacts/:id', (req, res) => {
             res.status(200).send(response);
         })
         .catch(error => {
-            res.status(500).send(error);
+            if (error === 'address was not found') {
+                res.status(402).send(error);
+            } else {
+                res.status(500).send(error);
+            }
         })
 })
 

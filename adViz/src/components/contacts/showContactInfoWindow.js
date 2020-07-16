@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getContact} from "../../store/actions/contactActions";
 
-class ShowContactInfoWindow extends Component{
+class ShowContactInfoWindow extends Component {
     state = {
         forename: "",
         name: "",
@@ -15,8 +15,9 @@ class ShowContactInfoWindow extends Component{
         isPrivate: false
     }
 
+    //TODO: Properties are undefined when loading the component.
     UNSAFE_componentWillReceiveProps(nextProps, nextState) {
-        const {forename, name, street, postId,town,country,isPrivate,} = nextProps.contact;
+        const {forename, name, street, postId, town, country, isPrivate,} = nextProps.contact;
         this.setState({
             forename,
             name,
@@ -28,15 +29,28 @@ class ShowContactInfoWindow extends Component{
         });
     }
 
+    /*static getDerivedStateFromProps(props,state){
+        if(props.contact.forename !== state.forename) {
+            return {
+                forename: props.forename > state.forename,
+                name: props.name > state.name,
+                street: props.street > state.street,
+                postId: props.postId > state.postId,
+                town: props.town > state.town,
+                country: props.country > state.country,
+                isPrivate: props.isPrivate > state.isPrivate
+            };
+        }
+    }*/
+
     componentDidMount() {
-        const { id } = this.props.match.params;
+        const {id} = this.props.match.params;
         this.props.getContact(id);
     }
 
     render() {
-        console.log(this.props.contact)
-        const {forename ,name, street, postId, town, country, isPrivate } = this.state;
-        return (
+        const {forename, name, street, postId, town, country, isPrivate} = this.state;
+        return this.state && (
             <div className="modal" id="modalAddressInfo">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -53,7 +67,7 @@ class ShowContactInfoWindow extends Component{
                         <label htmlFor="street">Street:</label>
                         <input type="text" id="street" value={street} readOnly={true} disabled={true}/>
                         <label htmlFor="postId">Postcode:</label>
-                        <input type="text" id="postId" value={postId} readOnly={true} disabled={true}/>
+                        <input type="number" id="postId" value={postId} readOnly={true} disabled={true}/>
                         <label htmlFor="town">Town:</label>
                         <input type="text" id="town" value={town} readOnly={true} disabled={true}/>
                         <label htmlFor="country">Country:</label>
@@ -65,7 +79,6 @@ class ShowContactInfoWindow extends Component{
                     </div>
                 </div>
             </div>
-
         )
     }
 
@@ -81,4 +94,4 @@ const mapStateToProps = state => ({
     contact: state.contact.contact[0]
 });
 
-export default connect(mapStateToProps, {getContact}) (ShowContactInfoWindow);
+export default connect(mapStateToProps, {getContact})(ShowContactInfoWindow);

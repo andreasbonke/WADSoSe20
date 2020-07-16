@@ -1,68 +1,69 @@
 import {
     GET_CONTACTS,
-    ADD_CONTACT,
     DELETE_CONTACT,
     GET_CONTACT,
-    UPDATE_CONTACT
+    UPDATE_CONTACT, ADD_CONTACT
 } from './types';
 import axios from 'axios';
 
-export const getContacts = () => async dispatch => {
-    const res = await axios.get('http://localhost:3300/adViz/contacts');
-
-    dispatch({
-        type: GET_CONTACTS,
-        payload: res.data
-    });
+export const getContacts = () => dispatch => {
+    axios.get('http://localhost:3300/adViz/contacts').then(res => {
+        dispatch({
+            type: GET_CONTACTS,
+            payload: res.data
+        });
+    })
 };
 
-export const getContact = id => async dispatch => {
-    const res = await axios.get(
+export const getContact = id => dispatch => {
+    axios.get(
         `http://localhost:3300/adViz/contacts/${id}`
-    );
+    ).then(res => {
+        dispatch({
+            type: GET_CONTACT,
+            payload: res.data
+        });
+    })
 
-    dispatch({
-        type: GET_CONTACT,
-        payload: res.data
-    });
 };
 
-export const addContact = contact => async dispatch => {
-    const res = await axios.post(
+export const addContact = contact => dispatch => {
+    axios.post(
         `http://localhost:3300/adViz/contacts`,
         contact
-    );
+    ).then(res => {
+        dispatch({
+            type: ADD_CONTACT,
+            payload: res.data
+        });
+    }).catch(() => {
+        alert("Address not found!!!")
+    });
 
-    dispatch({
-        type: ADD_CONTACT,
-        payload: res.data
+
+};
+
+export const deleteContact = id => dispatch => {
+    axios.delete(`http://localhost:3300/adViz/contacts/${id}`).then(() => {
+        dispatch({
+            type: DELETE_CONTACT,
+            payload: id
+        });
+    }).catch(() => {
+        alert("Wrong Contact ID");
     });
 };
 
-export const deleteContact = id => async dispatch => {
-    try {
-        await axios.delete(`http://localhost:3300/adViz/contacts/${id}`);
-
-        dispatch({
-            type: DELETE_CONTACT,
-            payload: id
-        });
-    } catch (e) {
-        dispatch({
-            type: DELETE_CONTACT,
-            payload: id
-        });
-    }
-};
-
-export const updateContact = contact => async dispatch => {
-    const res = await axios.put(
+export const updateContact = contact => dispatch => {
+    axios.put(
         `http://localhost:3300/adViz/contacts/${contact.id}`,
         contact
-    );
-
-    dispatch({
-        type: UPDATE_CONTACT,
-        payload: res.data
-    });
+    ).then((res) => {
+        dispatch({
+            type: UPDATE_CONTACT,
+            payload: res.data
+        });
+    }).catch(() => {
+        alert("Address not found!!!")
+    })
 };

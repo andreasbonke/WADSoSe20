@@ -13,8 +13,6 @@ class AddContactForm extends Component {
         town: "",
         country: "",
         isPrivate: false,
-        longitude: 0,
-        latitude: 0
     }
 
     handleChange = (e) => {
@@ -29,39 +27,20 @@ class AddContactForm extends Component {
         });
     }
 
-    async searchContactPosition(newContact) {
-        let markerPos = [0, 0]
-        let params = new URLSearchParams(newContact.street + " " + newContact.postId + " " + newContact.town);
-        let url = "https://api.tomtom.com/search/2/geocode/" + params + ".json?countrySet=DE&key=SL0aR93PQoAaWTez8PLTAGhARjEgeDhf";
-        await fetch(url)
-            .then(res => res.json())
-            .then(
-                (results) => {
-                    let latitude = results["results"][0]["position"]["lat"];
-                    let longitude = results["results"][0]["position"]["lon"];
-                    if (latitude !== "undefined") {
-                        markerPos = [latitude, longitude]
-                    }
-                }
-            )
-
-        newContact.markerPos = markerPos
-    }
 
     onSubmit = (e) => {
         e.preventDefault();
-        const  {forename, name, street, postId, town, country, isPrivate} = this.state;
+        const {forename, name, street, postId, town, country, isPrivate} = this.state;
 
-        const newContact = {
+        let newContact = {
             forename,
             name,
             street,
             postId,
             town,
             country,
-            isPrivate
+            isPrivate,
         }
-        this.searchContactPosition(newContact)
 
         this.props.addContact(newContact)
 
@@ -99,7 +78,7 @@ class AddContactForm extends Component {
                         <input type="text" id="street" value={street} onChange={this.handleChange}
                                required/>
                         <label htmlFor="postId">Postcode:</label>
-                        <input type="text" id="postId" value={postId} onChange={this.handleChange}
+                        <input type="number" id="postId" value={postId} onChange={this.handleChange}
                                required/>
                         <label htmlFor="town">Town:</label>
                         <input type="text" id="town" value={town} onChange={this.handleChange} required/>
@@ -117,8 +96,8 @@ class AddContactForm extends Component {
     }
 }
 
-AddContactForm.propsType ={
-    addContact: PropTypes.func.isRequired
+AddContactForm.propsType = {
+    addContact: PropTypes.func.isRequired,
 };
 
 export default connect(null, {addContact})(AddContactForm);

@@ -13,11 +13,13 @@ class EditContactForm extends Component {
         town: "",
         country: "",
         isPrivate: false,
-        id: ""
+        id: "",
+        latitude: "",
+        longitude: ""
     }
 
     UNSAFE_componentWillReceiveProps(nextProps, nextState) {
-        const {forename, name, street, postId,town,country,isPrivate,} = nextProps.contact;
+        const {forename, name, street, postId, town, country, isPrivate, longitude, latitude} = nextProps.contact;
         this.setState({
             forename,
             name,
@@ -26,11 +28,13 @@ class EditContactForm extends Component {
             town,
             country,
             isPrivate,
+            longitude,
+            latitude
         });
     }
 
     componentDidMount() {
-        const { id } = this.props.match.params;
+        const {id} = this.props.match.params;
         this.props.getContact(id);
     }
 
@@ -48,8 +52,8 @@ class EditContactForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const {forename ,name, street, postId, town, country, isPrivate } = this.state;
-        const { id } = this.props.match.params;
+        const {forename, name, street, postId, town, country, isPrivate, longitude, latitude} = this.state;
+        const {id} = this.props.match.params;
 
         const updateContact = {
             id,
@@ -59,9 +63,10 @@ class EditContactForm extends Component {
             postId,
             town,
             country,
-            isPrivate
+            isPrivate,
+            longitude,
+            latitude
         }
-        //this.searchContactPosition(updateContact)
 
         this.props.updateContact(updateContact)
 
@@ -72,7 +77,9 @@ class EditContactForm extends Component {
             postId: "",
             town: "",
             country: "",
-            isPrivate: false,
+            isPrivate: "",
+            longitude: "",
+            latitude: ""
         });
 
         this.props.history.push("/main");
@@ -80,7 +87,7 @@ class EditContactForm extends Component {
 
     render() {
         const {forename, name, street, postId, town, country, isPrivate} = this.state;
-        return (
+        return this.state && (
             <div className="modal" id="modalAddress">
                 <form className="modal-content" id="AddressForm"
                       onSubmit={this.onSubmit}>
@@ -91,7 +98,7 @@ class EditContactForm extends Component {
                         <h2>Update Address</h2>
                     </div>
                     <div className="container">
-                        <label htmlFor="forname">Forname:</label>
+                        <label htmlFor="forname">Forename:</label>
                         <input type="text" id="forename" value={forename} onChange={this.handleChange}
                                required/>
                         <label htmlFor="name">Name:</label>
@@ -100,7 +107,7 @@ class EditContactForm extends Component {
                         <input type="text" id="street" value={street} onChange={this.handleChange}
                                required/>
                         <label htmlFor="postId">Postcode:</label>
-                        <input type="text" id="postId" value={postId} onChange={this.handleChange}
+                        <input type="number" id="postId" value={postId} onChange={this.handleChange}
                                required/>
                         <label htmlFor="town">Town:</label>
                         <input type="text" id="town" value={town} onChange={this.handleChange} required/>
@@ -119,7 +126,7 @@ class EditContactForm extends Component {
 }
 
 EditContactForm.propTypes = {
-    contact: PropTypes.object.isRequired,
+    //contact: PropTypes.object.isRequired,
     getContact: PropTypes.func.isRequired,
     updateContact: PropTypes.func.isRequired
 };
@@ -128,4 +135,4 @@ const mapStateToProps = state => ({
     contact: state.contact.contact[0]
 });
 
-export default connect(mapStateToProps,{getContact, updateContact})(EditContactForm);
+export default connect(mapStateToProps, {getContact, updateContact})(EditContactForm);
