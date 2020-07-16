@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getContacts} from '../../store/actions/contactActions'
 import ContactItem from './ContactItem'
 
 class ContactList extends Component {
@@ -60,14 +59,11 @@ function AdminContacts(props) {
 }
 
 ContactList.propTypes = {
-    contacts: PropTypes.array.isRequired,
-    getContacts: PropTypes.func.isRequired,
     isAdmin: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-    contacts: state.contact.contacts,
     isAdmin: state.auth.user.isAdmin
 });
 
-export default connect(mapStateToProps, {getContacts})(ContactList)
+export default connect(mapStateToProps)(ContactList)

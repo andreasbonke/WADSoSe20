@@ -54,7 +54,6 @@ class ContactItem extends Component {
 
 ContactItem.propTypes = {
     user: PropTypes.object.isRequired,
-    contact: PropTypes.object.isRequired,
     deleteContact: PropTypes.func.isRequired
 };
 
