@@ -6,6 +6,7 @@ import {
 } from './types';
 import axios from 'axios';
 
+/** get all contacts from Rest server endpoint**/
 export const getContacts = () => dispatch => {
     axios.get('http://localhost:3300/adViz/contacts').then(res => {
         dispatch({
@@ -15,6 +16,8 @@ export const getContacts = () => dispatch => {
     })
 };
 
+/** send an id to the Rest server endpoint, to get one contact
+ * @param id **/
 export const getContact = id => dispatch => {
     axios.get(
         `http://localhost:3300/adViz/contacts/${id}`
@@ -27,6 +30,8 @@ export const getContact = id => dispatch => {
 
 };
 
+/** send a new contact to the Rest server endpoint
+ * @param contact **/
 export const addContact = contact => dispatch => {
     axios.post(
         `http://localhost:3300/adViz/contacts`,
@@ -39,10 +44,10 @@ export const addContact = contact => dispatch => {
     }).catch(() => {
         alert("Address not found!!!")
     });
-
-
 };
 
+/** send an id to the Rest server endpoint, to delete an contact
+ * @param id **/
 export const deleteContact = id => dispatch => {
     axios.delete(`http://localhost:3300/adViz/contacts/${id}`).then(() => {
         dispatch({
@@ -54,6 +59,8 @@ export const deleteContact = id => dispatch => {
     });
 };
 
+/** send an updated contact to Rest server endpoint
+ * @param contact **/
 export const updateContact = contact => dispatch => {
     axios.put(
         `http://localhost:3300/adViz/contacts/${contact.id}`,

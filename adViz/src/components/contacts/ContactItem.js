@@ -33,8 +33,7 @@ class ContactItem extends Component {
                             <span id="moreAction-button" onClick={() => this.setState({
                                 showContactAction: !this.state.showContactAction
                             })}>&darr;</span>
-                        )
-                        }
+                        )}
                     </div>
                 </li>
                 {showContactAction ? (
@@ -47,7 +46,6 @@ class ContactItem extends Component {
                     </div>
                 ) : null}
             </div>
-
         )
     }
 }

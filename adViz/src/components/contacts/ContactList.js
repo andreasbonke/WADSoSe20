@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ContactItem from './ContactItem'
+import ContactItem from './ContactItem';
 
 class ContactList extends Component {
 
@@ -66,4 +66,4 @@ const mapStateToProps = state => ({
     isAdmin: state.auth.user.isAdmin
 });
 
-export default connect(mapStateToProps)(ContactList)
+export default connect(mapStateToProps)(ContactList);

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ContactList from './contacts/ContactList'
-import Footer from './layout/Footer'
+import ContactList from './contacts/ContactList';
+import Footer from './layout/Footer';
 import MapView from './layout/MapView';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';

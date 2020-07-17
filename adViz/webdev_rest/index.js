@@ -1,6 +1,6 @@
-const express = require('express')
-const app = express()
-const port = 3300
+const express = require('express');
+const app = express();
+const port = 3300;
 
 const merchant_model = require('./contact_model')
 

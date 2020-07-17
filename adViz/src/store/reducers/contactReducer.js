@@ -3,6 +3,8 @@ const initialState = {
     contact: {}
 }
 
+/**function gets an action and changes the contacts and contact state
+ * @param action**/
 export default function (state = initialState, action) {
 
     switch (action.type) {

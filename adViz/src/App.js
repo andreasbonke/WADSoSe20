@@ -13,7 +13,7 @@ import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import SignupForm from "./components/users/SignupForm";
+import SignUpForm from "./components/users/SignUpForm";
 
 function App(props) {
 
@@ -27,23 +27,23 @@ function App(props) {
             </div>
             <Switch>
                 <Route path="/signIn" component={LoginForm} exact={true}></Route>
-                {!props.loggedIn &&(
-                    <Route path="/signUp" component={SignupForm} exact={true}></Route>
+                {!props.loggedIn && (
+                    <Route path="/signUp" component={SignUpForm} exact={true}></Route>
                 )
                 }
                 {props.loggedIn && (
                     <Route path="/main" component={Main} exact={true}></Route>
                 )
                 }
-                {props.isAdmin && props.loggedIn &&(
+                {props.isAdmin && props.loggedIn && (
                     <Route path="/add" component={AddContact} exact={true}></Route>
                 )
                 }
-                {props.isAdmin && props.loggedIn &&(
+                {props.isAdmin && props.loggedIn && (
                     <Route path="/edit/:id" component={EditContactForm} exact={true}></Route>
                 )
                 }
-                {props.loggedIn &&(
+                {props.loggedIn && (
                     <Route path="/show/:id" component={ShowContactInfoWindow} exact={true}></Route>
                 )
                 }

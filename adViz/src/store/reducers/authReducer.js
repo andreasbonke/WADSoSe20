@@ -7,6 +7,8 @@ const initState = {
     loggedIn: false
 }
 
+/**function gets an action and changes the user state
+ * @param action **/
 export default function (state = initState, action) {
     switch (action.type) {
         case "LOGIN":

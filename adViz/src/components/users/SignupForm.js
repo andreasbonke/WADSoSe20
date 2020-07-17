@@ -13,7 +13,7 @@ class LoginForm extends Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps, nextState) {
-        if (nextProps.user.username !== ""){
+        if (nextProps.user.username !== "") {
             this.props.history.push("/main");
             this.setState({
                 username: "",
@@ -66,7 +66,8 @@ class LoginForm extends Component {
                                onChange={this.handleChange} required/>
                         <label htmlFor="password"><b>Admin rights </b></label>
                         <input type="checkbox" id="isAdmin" placeholder="Email"
-                               value={this.state.isAdmin} checked={this.state.isAdmin} onChange={this.handleCheckboxChange}/>
+                               value={this.state.isAdmin} checked={this.state.isAdmin}
+                               onChange={this.handleCheckboxChange}/>
                         <button type="submit" className="form-button" id="logInBtn">Sign up for Adviz</button>
                         <Link to="/signIn">
                             <span> Sign in</span>
@@ -86,6 +87,5 @@ LoginForm.propsType = {
 const mapStateToProps = state => ({
     user: state.auth.user
 });
-
 
 export default connect(mapStateToProps, {createUser})(LoginForm);
