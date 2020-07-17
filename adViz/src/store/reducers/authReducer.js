@@ -2,6 +2,8 @@ const initState = {
     user: {
         username: "",
         password: "",
+        firstname: "",
+        lastname: "",
         isAdmin: false,
     },
     loggedIn: false
