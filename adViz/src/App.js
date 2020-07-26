@@ -13,7 +13,7 @@ import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import SignUpForm from "./components/users/SignUpForm";
+import SignUpForm from "./components/users/SignupForm";
 
 function App(props) {
 
