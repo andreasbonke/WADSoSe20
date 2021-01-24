@@ -9,6 +9,8 @@ class LoginForm extends Component {
     state = {
         username: "",
         password: "",
+        firstname: "",
+        lastname: "",
         isAdmin: false
     }
 
@@ -18,6 +20,8 @@ class LoginForm extends Component {
             this.setState({
                 username: "",
                 password: "",
+                firstname: "",
+                lastname: "",
                 isAdmin: false,
             })
         }
@@ -36,11 +40,14 @@ class LoginForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const {username, password, isAdmin} = this.state;
+        const {username, password, firstname,
+            lastname, isAdmin} = this.state;
 
         let user = {
             username,
             password,
+            firstname,
+            lastname,
             isAdmin
         }
 
@@ -58,10 +65,16 @@ class LoginForm extends Component {
                         <h2>Sign up to Adviz</h2>
                     </div>
                     <div className="container">
+                        <label htmlFor="firstname"><b>Forename *</b></label>
+                        <input type="text" id="firstname" placeholder="Forename"
+                               onChange={this.handleChange} required/>
+                        <label htmlFor="lastname"><b>Name *</b></label>
+                        <input type="text" id="lastname" placeholder="Name"
+                               onChange={this.handleChange} required/>
                         <label htmlFor="username"><b>Username *</b></label>
                         <input type="text" id="username" placeholder="Username"
                                onChange={this.handleChange} required/>
-                        <label htmlFor="username"><b>Password *</b></label>
+                        <label htmlFor="password"><b>Password *</b></label>
                         <input type="password" id="password" placeholder="Password"
                                onChange={this.handleChange} required/>
                         <label htmlFor="password"><b>Admin rights </b></label>

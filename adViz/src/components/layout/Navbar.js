@@ -20,8 +20,8 @@ class NavBar extends Component {
             <header>
                 <div id="my_header">
                     <Link to="/">
-                        <h1 onClick={this.props.logout}> Welcome {this.props.user.username && (this.props.user.username.toUpperCase() + ' ')}at
-                            AdViz</h1>
+                        <h1 onClick={this.props.logout}> Welcome {this.props.user.firstname && (this.props.user.firstname+ ' '+ this.props.user.lastname + ' ')}at
+                            AdViz {this.props.loggedIn && (', logged in as ')} { this.props.user.isAdmin && this.props.loggedIn ? ('Admin'): ( this.props.user.username)} </h1>
                     </Link>
                 </div>
                 <nav>

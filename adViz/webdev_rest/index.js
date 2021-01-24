@@ -104,7 +104,7 @@ app.delete('/users/:username', (req, res) => {
 app.put('/adViz/contacts/:id', (req, res) => {
     merchant_model.updateContact(req.params.id, req.body)
         .then(response => {
-            res.status(200).send(response);
+            res.status(204).send(response);
         })
         .catch(error => {
             if (error === 'address was not found') {
@@ -122,7 +122,7 @@ app.delete('/adViz/contacts/:id', (req, res) => {
     console.log(req.params.id)
     merchant_model.deleteContact(req.params.id)
         .then(response => {
-            res.status(200).send(response);
+            res.status(204).send(response);
         })
         .catch(error => {
             res.status(500).send(error);
