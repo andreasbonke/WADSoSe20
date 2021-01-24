@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import LoginForm from './components/users/LoginForm';
 import Main from './components/Main';
-import NavBar from './components/layout/NavBar';
+import NavBar from './components/layout/Navbar';
 import HomePage from "./components/layout/HomePage";
-import ShowContactInfoWindow from "./components/contacts/ShowContactInfoWindow";
+import ShowContactInfoWindow from "./components/contacts/showContactInfoWindow";
 import AddContact from "./components/contacts/AddContactForm";
 import EditContactForm from "./components/contacts/EditContactForm";
 import {connect} from 'react-redux';
